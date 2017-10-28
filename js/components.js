@@ -1,111 +1,165 @@
 AFRAME.registerComponent('inicio', {
     schema: {},
     init: function () {
-        const el = this.el
-
-        this.checkpoint = document.createElement('a-plane');
-        this.box = document.createElement('a-box');
+        //this.el = elemento que contiene atributo inicio.
+        const el = this.el,
+            escenaEl = this.el.parentNode,
+            nextState = 2
         
-        el.appendChild(this.box);
+        //creacion de elementos
+        this.checkpoint = document.createElement('a-plane'),
+        this.sky = document.createElement('a-sky'),
+        this.grid = document.createElement('a-grid')
+        
+        //Añadir elementos hijos de this.el
         el.appendChild(this.checkpoint);
+        el.appendChild(this.sky);
+        el.appendChild(this.grid);
 
-        this.box.setAttribute( 'position', { x: 1, y: 1.2, z: -7})
-        this.box.setAttribute( 'color', 'green')
+        //Atributos sky
+        this.sky.setAttribute( 'color', 'black')
 
+        //Atributos checkpoint
         this.checkpoint.setAttribute('checkpoint', { offset: {x:0, y:1.6, z:0} })
         this.checkpoint.setAttribute('color', 'green')
         this.checkpoint.setAttribute('position', { x: 0, y: .1, z: -5})
         this.checkpoint.setAttribute('rotation', { x: -90, y: 0, z: 0})
 
-        this.portalEnter();
-    },
-    portalEnter () {
-        var escenaEl = this.el.parentNode,
-            count = 2
+        this.createImage('portal', 'portal-1', '#portal-img', 2.5, 4, { x: 2, y: 2, z: -7 });
+        this.portal = document.querySelector('.portal-1')
 
-        this.box.addEventListener('click' , () => {
-            escenaEl.components['escena'].estado(count);
-            // console.log(escenaEl)
-            // console.log(escenaEl.components['escena'])
+        // funcion para detectar click en el portal
+        this.portal.addEventListener('click' , () => {
+            escenaEl.components['escena'].estado(nextState);
         })
+    },
+    createImage (nameEl, className, idSrc, w, h, pos) {
+        nameEl = document.createElement('a-image')
 
+        this.el.appendChild(nameEl)
+
+        nameEl.setAttribute( 'class', className )
+        nameEl.setAttribute( 'src', idSrc )
+        nameEl.setAttribute( 'width', w )
+        nameEl.setAttribute( 'height', h )
+        nameEl.setAttribute( 'position', pos )
     },
     remove: function () {
-        const el = this.el
-
-        el.removeChild(this.box)
-        el.removeChild(this.checkpoint)
     },
   });
 
 
 
-  //-----------------------------------------------
+  //-----------------COMPONENTE MESOZOICA------------------------------
 
 
   AFRAME.registerComponent('meso', {
     schema: {},
     init: function () {
-        const el = this.el
+        const el = this.el,
+            escenaEl = this.el.parentNode,
+            nextState = 1
 
-        this.checkpoint = document.createElement('a-plane');
-        this.checkpoint2 = document.createElement('a-plane');
-        this.box = document.createElement('a-box');
+        this.sky = document.createElement('a-sky');
         
-        el.appendChild(this.box);
-        el.appendChild(this.checkpoint);
-        el.appendChild(this.checkpoint2);
+        el.appendChild(this.sky);
+        
+        //Atributos sky
+        this.sky.setAttribute( 'color', 'skyblue')
 
-        this.box.setAttribute( 'position', { x: -1, y: 1.2, z: -7})
-        this.box.setAttribute( 'color', 'blue')
+        // Crea elemento escenario ply
+        this.createPly('escenario', '#escenario-ply', 0, 0, 0);
 
-        this.checkpoint.setAttribute('checkpoint', { offset: {x:0, y:1.6, z:0} })
-        this.checkpoint.setAttribute('color', 'blue')
-        this.checkpoint.setAttribute('position', { x: 0, y: .1, z: -5})
-        this.checkpoint.setAttribute('rotation', { x: -90, y: 0, z: 0})
+        //dino prueba BORRAR ----------------------------------
+        this.createPly('dino', '#dino-ply', 2, .2, -7);
+        console.log(this.dino)
 
-        this.checkpoint2.setAttribute('checkpoint', { offset: {x:0, y:1.6, z:0} })
-        this.checkpoint2.setAttribute('color', 'blue')
-        this.checkpoint2.setAttribute('position', { x: 0, y: .1, z: 0})
-        this.checkpoint2.setAttribute('rotation', { x: -90, y: 0, z: 0})
+        //helechos
+        this.createPly('helecho', '#helecho-ply', -1, .2, -4)
+        this.createPly('helecho', '#helecho-ply', -1.5, .2, -3)
+        this.createPly('helecho', '#helecho-ply', -2.3, .2, -3.4)
+        this.createPly('helecho', '#helecho-ply', -2.8, .2, -3.6)
+        this.createPly('helecho', '#helecho-ply', -3, .2, -4.2)
+        this.createPly('helecho', '#helecho-ply', .5, .2, -4)
+        this.createPly('helecho', '#helecho-ply', 1, .2, -4)
+        this.createPly('helecho', '#helecho-ply', 1.5, .2, -3)
+        this.createPly('helecho', '#helecho-ply', 2.3, .2, -3.4)
+        this.createPly('helecho', '#helecho-ply', 2.8, .2, -3.6)
+        this.createPly('helecho', '#helecho-ply', 3, .2, -4.2)
+        this.createPly('helecho', '#helecho-ply', -.5, .2, -4)
+        this.createPly('helecho', '#helecho-ply', 1, .2, -5)
+        this.createPly('helecho', '#helecho-ply', 1.5, .2, -6)
+        this.createPly('helecho', '#helecho-ply', 2.3, .2, -7)
+        this.createPly('helecho', '#helecho-ply', 2.8, .2, -6)
+        this.createPly('helecho', '#helecho-ply', 3, .2, -5)
+        this.createPly('helecho', '#helecho-ply', -.5, .2, -8)
+        this.createPly('helecho', '#helecho-ply', -1, .2, -5)
+        this.createPly('helecho', '#helecho-ply', -1.5, .2, -6)
+        this.createPly('helecho', '#helecho-ply', -2.3, .2, -7)
+        this.createPly('helecho', '#helecho-ply', -2.8, .2, -8)
+        this.createPly('helecho', '#helecho-ply', -3, .2, -6)
+        this.createPly('helecho', '#helecho-ply', -1, .2, -2)
+        this.createPly('helecho', '#helecho-ply', -1.5, .2, -2)
+        this.createPly('helecho', '#helecho-ply', -2.3, .2, -2.4)
+        this.createPly('helecho', '#helecho-ply', -2.8, .2, -2.6)
+        this.createPly('helecho', '#helecho-ply', -3, .2, -3.2)
+        this.createPly('helecho', '#helecho-ply', 1, .2, -2)
+        this.createPly('helecho', '#helecho-ply', 1.5, .2, -3)
+        this.createPly('helecho', '#helecho-ply', 2.3, .2, -2)
+        this.createPly('helecho', '#helecho-ply', 2.8, .2, -2)
+        this.createPly('helecho', '#helecho-ply', 3, .2, -1)
+        this.createPly('helecho', '#helecho-ply', -1, .2, 0)
+        this.createPly('helecho', '#helecho-ply', -1.5, .2, 2)
+        this.createPly('helecho', '#helecho-ply', -2.3, .2, 2.4)
+        this.createPly('helecho', '#helecho-ply', -2.8, .2, 2.6)
+        this.createPly('helecho', '#helecho-ply', -3, .2, 3.2)
+        this.createPly('helecho', '#helecho-ply', 1, .2, 2)
+        this.createPly('helecho', '#helecho-ply', 1.5, .2, 3)
+        this.createPly('helecho', '#helecho-ply', 2.3, .2, 2)
+        this.createPly('helecho', '#helecho-ply', 2.8, .2, 2)
+        this.createPly('helecho', '#helecho-ply', 3, .2, 1)
+
+        //crear portal
+        this.createImage('portal', 'portal-2', '#portal-img', 2.5, 4, { x: -3, y: 2, z: -7 } )
+        this.portal = document.querySelector('.portal-2')
 
         //dispara evento cuando mira el portal
-        this.portalEnter();
+         this.portal.addEventListener('click' , () => {
+            escenaEl.components['escena'].estado(nextState);
+        })
 
-        this.createModel('escenario', '#escenario-ply');
     },
     //funcion para importar modelos ply.
-    createModel(nameEl, id) {
-        // asocia parametro nameEl a variable local del componente
-        this.nameEl = nameEl
+    createPly(nameEl, id, x, y, z) {
+        var pos = { x: x, y: y, z: z }
 
         nameEl = document.createElement('a-entity')
 
         this.el.appendChild(nameEl)
 
         nameEl.setAttribute( 'ply-model', {src: id})
-        nameEl.setAttribute( 'position', { x: 0, y: -.4, z: 0})
+
+        //Posicion fija por el momento, cambiarla para pasar por parametro a la funcion
+        nameEl.setAttribute( 'position', pos)
     },
-    portalEnter () {
-        var escenaEl = this.el.parentNode,
-            count = 1
+    createImage (nameEl, className, idSrc, w, h, pos) {
+        nameEl = document.createElement('a-image')
 
-        this.box.addEventListener('click' , () => {
-            escenaEl.components['escena'].estado(count);
-        })
+        this.el.appendChild(nameEl)
 
+        nameEl.setAttribute( 'class', className )
+        nameEl.setAttribute( 'src', idSrc )
+        nameEl.setAttribute( 'width', w )
+        nameEl.setAttribute( 'height', h )
+        nameEl.setAttribute( 'position', pos )
     },
     remove: function () {
-        const el = this.el
-
-        el.removeChild(this.box)
-        el.removeChild(this.checkpoint)
     },
   });
 
 
 
-  //-----------------------------------------------
+  //-----------------COMPONENTE ESCENA------------------------------
 
 
 
@@ -113,6 +167,10 @@ AFRAME.registerComponent('escena', {
     schema: {type: 'int', default: 1},
     init: function () {
         const el = this.el
+
+        //Borrar
+        this.data = 2;
+        //Borrar
 
         this.escena1 = document.createElement('a-entity')
         
@@ -128,18 +186,22 @@ AFRAME.registerComponent('escena', {
         var data = this.data
 
         if (data == 1){
+            //Remover todos los elementos de otros escenarios.
             this.el.removeChild(this.escena2)
             
+            //crear componente del escenario actual
             this.escena1 = document.createElement('a-entity')
             
+            // agrega componente a la escena
             this.el.appendChild(this.escena1)
-    
+            
             this.escena1.setAttribute('inicio', '')
         }
         if (data == 2) {
             this.el.removeChild(this.escena1)
 
             this.escena2 = document.createElement('a-entity')
+            
             this.el.appendChild(this.escena2)
           
             this.escena2.setAttribute('meso', '')
@@ -148,4 +210,3 @@ AFRAME.registerComponent('escena', {
     remove: function () {
     },
 });
-
