@@ -7,24 +7,17 @@ AFRAME.registerComponent('inicio', {
             nextState = 2
         
         //creacion de elementos
-        this.checkpoint = document.createElement('a-plane'),
         this.sky = document.createElement('a-sky'),
         this.grid = document.createElement('a-grid')
         
         //Añadir elementos hijos de this.el
-        el.appendChild(this.checkpoint);
         el.appendChild(this.sky);
         el.appendChild(this.grid);
 
         //Atributos sky
         this.sky.setAttribute( 'color', 'black')
 
-        //Atributos checkpoint
-        this.checkpoint.setAttribute('checkpoint', { offset: {x:0, y:1.6, z:0} })
-        this.checkpoint.setAttribute('color', 'green')
-        this.checkpoint.setAttribute('position', { x: 0, y: .1, z: -5})
-        this.checkpoint.setAttribute('rotation', { x: -90, y: 0, z: 0})
-
+        //Crea portal 1
         this.createImage('portal', 'portal-1', '#portal-img', 2.5, 4, { x: 2, y: 2, z: -7 });
         this.portal = document.querySelector('.portal-1')
 
@@ -58,9 +51,18 @@ AFRAME.registerComponent('inicio', {
     init: function () {
         const el = this.el,
             escenaEl = this.el.parentNode,
-            nextState = 1
+            nextState = 1,
+            //animar helecho
+            animate = document.createElement('a-animation')
 
         this.sky = document.createElement('a-sky');
+
+        //animacion texto
+        this.textAnimate = document.createElement('a-animation')
+        this.textAnimate.setAttribute('attribute', 'height')
+        this.textAnimate.setAttribute('from', 0 )
+        this.textAnimate.setAttribute('to', 1 )
+        this.textAnimate.setAttribute('begin', 'mostrar')
         
         el.appendChild(this.sky);
         
@@ -73,48 +75,70 @@ AFRAME.registerComponent('inicio', {
         //dino prueba BORRAR ----------------------------------
         this.createPly('dino', '#dino-ply', 2, .2, -7);
 
-        //helechos
-        // this.createPly('helecho', '#helecho-ply', -1, .2, -4)
-
+        //Mapa
+            //0 = nada
+            //1 = helecho
+            //2 = helecho animado
+            //3 = arbol
         var mapa = [
-            [ 2, 0, 0, 1, 1, 1, 1, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1, 0, 0, 2 ],
-            [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 3, 0, 0, 1, 0, 0, 1, 0, 0, 3, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0 ],
-            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,111,0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
-            [ 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 1, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
-            [ 2, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0 ]
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 ],
+            [ 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
         ]
 
         //posicionar elementos repetidos
-            //0 = nada
-            //1 = helecho
-            //2 = arbol
         for (var x = 0; x < mapa.length; x++ ){
             for (var z = 0; z < mapa[x].length; z++ ){
-                var posX = (x - mapa.length / 2),
-                    posZ = (z - mapa[x].length / 2)
+                var posZ = (x - mapa.length / 2),
+                    posX = (z - mapa[x].length / 2)
                 if (mapa[x][z] == 0) {
                     continue
                 } else if (mapa[x][z] == 1){
                     //helechos
                     this.createPly('helecho', '#helecho-ply', posX + Math.random(-2, 2), .2, posZ + Math.random(-2, 2))
                 } else if (mapa[x][z] == 2){
+                    // config animacion
+                    animate.setAttribute('attribute', 'position')
+                    animate.setAttribute('from', `${posX}, .1, ${posZ}` )
+                    animate.setAttribute('to', `${posX} .2 ${posZ}` )
+                    animate.setAttribute('direction', 'alternate')
+                    animate.setAttribute('repeat', 'indefinide')
+                    //helecho animado
+                    this.createPly('helecho-anim', '#helecho-ply', posX, .1, posZ)  
+                    
+                    //info helecho
+                    this.createImage('info-helecho', 'info-helecho', '#helecho-img', posX + 1, 2, posZ + .9, 3.7, 0 )
+                } else if (mapa[x][z] == 3){
                     //arboles
                     this.createPly('arbol', '#arbol-ply', posX , .2, posZ)
                 }
             }
         }
 
-        //crear portal
-        this.createImage('portal', 'portal-2', '#portal-img', 2.5, 4, { x: -3, y: 2, z: -7 } )
+        //seleccionar helecho a animar
+        this.helechoAnim = document.querySelector('.helecho-anim') 
+        
+        // Agregar animacion al helecho
+        this.helechoAnim.appendChild(animate)  
+
+        //config informacion helecho
+        this.infoHelecho = document.querySelector('.info-helecho')
+        this.infoHelecho.setAttribute( 'rotation', {x: 0, y: 45, z: 0})
+        this.infoHelecho.appendChild(this.textAnimate)
+
+        //Crear portal 2
+        this.createImage('portal', 'portal-2', '#portal-img', -3, 2, -7, 2.5, 4 )
         this.portal = document.querySelector('.portal-2')
 
         //dispara evento cuando mira el portal
@@ -122,30 +146,35 @@ AFRAME.registerComponent('inicio', {
             escenaEl.components['escena'].estado(nextState);
         })
 
+        //mostrar info helecho
+        this.helechoAnim.addEventListener('click', () => {
+            //animar info helecho
+            this.infoHelecho.emit('mostrar')
+        })
     },
     //funcion para importar modelos ply.
     createPly(nameEl, id, x, y, z) {
+        var pos = { x: x, y: y, z: z },
+            plyEl = document.createElement('a-entity')
+
+        this.el.appendChild(plyEl)
+
+        plyEl.setAttribute( 'ply-model', {src: id})
+        plyEl.setAttribute( 'class', nameEl)
+        plyEl.setAttribute( 'position', pos)
+    },
+    createImage (nameEl, className, idSrc, x, y, z, w, h) {
         var pos = { x: x, y: y, z: z }
 
-        nameEl = document.createElement('a-entity')
-
-        this.el.appendChild(nameEl)
-
-        nameEl.setAttribute( 'ply-model', {src: id})
-
-        //Posicion fija por el momento, cambiarla para pasar por parametro a la funcion
-        nameEl.setAttribute( 'position', pos)
-    },
-    createImage (nameEl, className, idSrc, w, h, pos) {
         nameEl = document.createElement('a-image')
 
         this.el.appendChild(nameEl)
 
         nameEl.setAttribute( 'class', className )
         nameEl.setAttribute( 'src', idSrc )
+        nameEl.setAttribute( 'position', pos )
         nameEl.setAttribute( 'width', w )
         nameEl.setAttribute( 'height', h )
-        nameEl.setAttribute( 'position', pos )
     },
     remove: function () {
     },
