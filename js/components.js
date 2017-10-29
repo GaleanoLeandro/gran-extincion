@@ -72,52 +72,46 @@ AFRAME.registerComponent('inicio', {
 
         //dino prueba BORRAR ----------------------------------
         this.createPly('dino', '#dino-ply', 2, .2, -7);
-        console.log(this.dino)
 
         //helechos
-        this.createPly('helecho', '#helecho-ply', -1, .2, -4)
-        this.createPly('helecho', '#helecho-ply', -1.5, .2, -3)
-        this.createPly('helecho', '#helecho-ply', -2.3, .2, -3.4)
-        this.createPly('helecho', '#helecho-ply', -2.8, .2, -3.6)
-        this.createPly('helecho', '#helecho-ply', -3, .2, -4.2)
-        this.createPly('helecho', '#helecho-ply', .5, .2, -4)
-        this.createPly('helecho', '#helecho-ply', 1, .2, -4)
-        this.createPly('helecho', '#helecho-ply', 1.5, .2, -3)
-        this.createPly('helecho', '#helecho-ply', 2.3, .2, -3.4)
-        this.createPly('helecho', '#helecho-ply', 2.8, .2, -3.6)
-        this.createPly('helecho', '#helecho-ply', 3, .2, -4.2)
-        this.createPly('helecho', '#helecho-ply', -.5, .2, -4)
-        this.createPly('helecho', '#helecho-ply', 1, .2, -5)
-        this.createPly('helecho', '#helecho-ply', 1.5, .2, -6)
-        this.createPly('helecho', '#helecho-ply', 2.3, .2, -7)
-        this.createPly('helecho', '#helecho-ply', 2.8, .2, -6)
-        this.createPly('helecho', '#helecho-ply', 3, .2, -5)
-        this.createPly('helecho', '#helecho-ply', -.5, .2, -8)
-        this.createPly('helecho', '#helecho-ply', -1, .2, -5)
-        this.createPly('helecho', '#helecho-ply', -1.5, .2, -6)
-        this.createPly('helecho', '#helecho-ply', -2.3, .2, -7)
-        this.createPly('helecho', '#helecho-ply', -2.8, .2, -8)
-        this.createPly('helecho', '#helecho-ply', -3, .2, -6)
-        this.createPly('helecho', '#helecho-ply', -1, .2, -2)
-        this.createPly('helecho', '#helecho-ply', -1.5, .2, -2)
-        this.createPly('helecho', '#helecho-ply', -2.3, .2, -2.4)
-        this.createPly('helecho', '#helecho-ply', -2.8, .2, -2.6)
-        this.createPly('helecho', '#helecho-ply', -3, .2, -3.2)
-        this.createPly('helecho', '#helecho-ply', 1, .2, -2)
-        this.createPly('helecho', '#helecho-ply', 1.5, .2, -3)
-        this.createPly('helecho', '#helecho-ply', 2.3, .2, -2)
-        this.createPly('helecho', '#helecho-ply', 2.8, .2, -2)
-        this.createPly('helecho', '#helecho-ply', 3, .2, -1)
-        this.createPly('helecho', '#helecho-ply', -1, .2, 0)
-        this.createPly('helecho', '#helecho-ply', -1.5, .2, 2)
-        this.createPly('helecho', '#helecho-ply', -2.3, .2, 2.4)
-        this.createPly('helecho', '#helecho-ply', -2.8, .2, 2.6)
-        this.createPly('helecho', '#helecho-ply', -3, .2, 3.2)
-        this.createPly('helecho', '#helecho-ply', 1, .2, 2)
-        this.createPly('helecho', '#helecho-ply', 1.5, .2, 3)
-        this.createPly('helecho', '#helecho-ply', 2.3, .2, 2)
-        this.createPly('helecho', '#helecho-ply', 2.8, .2, 2)
-        this.createPly('helecho', '#helecho-ply', 3, .2, 1)
+        // this.createPly('helecho', '#helecho-ply', -1, .2, -4)
+
+        var mapa = [
+            [ 2, 0, 0, 1, 1, 1, 1, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1, 0, 0, 2 ],
+            [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
+            [ 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 1, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2 ],
+            [ 2, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0 ]
+        ]
+
+        //posicionar elementos repetidos
+            //0 = nada
+            //1 = helecho
+            //2 = arbol
+        for (var x = 0; x < mapa.length; x++ ){
+            for (var z = 0; z < mapa[x].length; z++ ){
+                var posX = (x - mapa.length / 2),
+                    posZ = (z - mapa[x].length / 2)
+                if (mapa[x][z] == 0) {
+                    continue
+                } else if (mapa[x][z] == 1){
+                    //helechos
+                    this.createPly('helecho', '#helecho-ply', posX + Math.random(-2, 2), .2, posZ + Math.random(-2, 2))
+                } else if (mapa[x][z] == 2){
+                    //arboles
+                    this.createPly('arbol', '#arbol-ply', posX , .2, posZ)
+                }
+            }
+        }
 
         //crear portal
         this.createImage('portal', 'portal-2', '#portal-img', 2.5, 4, { x: -3, y: 2, z: -7 } )
