@@ -57,13 +57,21 @@ AFRAME.registerComponent('inicio', {
 
         this.sky = document.createElement('a-sky');
 
-        //animacion texto
-        this.textAnimate = document.createElement('a-animation')
-        this.textAnimate.setAttribute('attribute', 'height')
-        this.textAnimate.setAttribute('from', 0 )
-        this.textAnimate.setAttribute('to', 1 )
-        this.textAnimate.setAttribute('begin', 'mostrar')
+        //animacion mostrar texto
+        this.showText = document.createElement('a-animation')
+        this.showText.setAttribute('attribute', 'height')
+        this.showText.setAttribute('from', 0 )
+        this.showText.setAttribute('to', 1 )
+        this.showText.setAttribute('begin', 'mostrar')
         
+
+        //animacion ocultar texto
+        this.hiddeText = document.createElement('a-animation')
+        this.hiddeText.setAttribute('attribute', 'height')
+        this.hiddeText.setAttribute('from', 1 )
+        this.hiddeText.setAttribute('to', 0 )
+        this.hiddeText.setAttribute('begin', 'ocultar')
+
         el.appendChild(this.sky);
         
         //Atributos sky
@@ -135,7 +143,8 @@ AFRAME.registerComponent('inicio', {
         //config informacion helecho
         this.infoHelecho = document.querySelector('.info-helecho')
         this.infoHelecho.setAttribute( 'rotation', {x: 0, y: 45, z: 0})
-        this.infoHelecho.appendChild(this.textAnimate)
+        this.infoHelecho.appendChild(this.showText)
+        this.infoHelecho.appendChild(this.hiddeText)
 
         //Crear portal 2
         this.createImage('portal', 'portal-2', '#portal-img', -3, 2, -7, 2.5, 4 )
@@ -150,6 +159,9 @@ AFRAME.registerComponent('inicio', {
         this.helechoAnim.addEventListener('click', () => {
             //animar info helecho
             this.infoHelecho.emit('mostrar')
+        })
+        this.infoHelecho.addEventListener('mouseleave' , () => {
+            this.infoHelecho.emit('ocultar')
         })
     },
     //funcion para importar modelos ply.
@@ -192,7 +204,7 @@ AFRAME.registerComponent('escena', {
         const el = this.el
 
         //Borrar
-        this.data = 2;
+        // this.data = 2;
         //Borrar
 
         this.escena1 = document.createElement('a-entity')
