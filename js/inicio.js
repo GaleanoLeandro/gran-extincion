@@ -71,11 +71,11 @@ AFRAME.registerComponent('inicio', {
         }, timeText + textInterval * 2);
 
         //remover textos del DOM para optimizar rendimiento
-        this.textBox.addEventListener('animationend', () => {
-            this.el.removeChild(this.texto1)
-            this.el.removeChild(this.texto2)
-            this.el.removeChild(this.texto3)
-        })
+        // this.textBox.addEventListener('animationend', () => {
+        //     this.el.removeChild(this.texto1)
+        //     this.el.removeChild(this.texto2)
+        //     this.el.removeChild(this.texto3)
+        // })
 
         // funcion para detectar click en el portal
         this.portal.addEventListener('click' , () => {
