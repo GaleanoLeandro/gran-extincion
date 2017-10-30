@@ -36,11 +36,11 @@ AFRAME.registerComponent('mesozoico', {
         //triceratop
         this.createObj('triceratop', 'triceratop', 3, 1, -1, -45)
         this.triceratop = document.querySelector('.triceratop')
-        //triceratop texto
-        var textH = 4.5
-        this.createImage('texto-triceratop', 'texto-triceratop', '#texto-triceratop', 2, 3, 2.5, 3.3, 0)
-        this.infotriceratop = document.querySelector('.texto-triceratop')
-        this.infotriceratop.setAttribute( 'rotation', {x: 10, y: -110, z: 0})
+        //triceratop texto 1
+        var textH = 2.5
+        this.createImage('texto-triceratop', 'texto-triceratop-1', '#texto-triceratop-1', 1.4, 2, 2.2, 3.8, 0)
+        this.infotriceratop = document.querySelector('.texto-triceratop-1')
+        this.infotriceratop.setAttribute( 'rotation', {x: 0, y: -140, z: 0})
         this.textAnimate(this.infotriceratop, 'showInfoTriceratop', 'hiddeInfoTriceratop', textH)
 
         this.triceratop.addEventListener('click', () => {
@@ -60,20 +60,20 @@ AFRAME.registerComponent('mesozoico', {
             //2 = helecho animado
             //3 = arbol
         var mapa = [
-            [ 3, 0, 0, 1, 0, 0, 1, 0, 0, 3, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 ],
+            [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,111,0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3 ],
-            [ 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
+            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
         ]
 
         //posicionar elementos repetidos
