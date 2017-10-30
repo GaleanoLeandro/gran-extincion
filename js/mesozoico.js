@@ -90,7 +90,7 @@ AFRAME.registerComponent('mesozoico', {
                     // config animacion
                     animate.setAttribute('attribute', 'position')
                     animate.setAttribute('from', `${posX}, .1, ${posZ}` )
-                    animate.setAttribute('to', `${posX} .2 ${posZ}` )
+                    animate.setAttribute('to', `${posX} .4 ${posZ}` )
                     animate.setAttribute('direction', 'alternate')
                     animate.setAttribute('repeat', 'indefinide')
                     //helecho animado
