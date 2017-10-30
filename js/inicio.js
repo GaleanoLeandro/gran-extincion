@@ -24,7 +24,7 @@ AFRAME.registerComponent('inicio', {
         this.portal = document.querySelector('.portal-1')
 
         //Crea luis
-        this.createImage('luis', 'luis', '#luis-img', 2, 1, -2.3, 1.5, 2.3)
+        this.createImage('luis', 'luis', '#luis-img', 2.1, 1, -2.3, 2.4, 3.2)
 
         //config cuadro de textos luis
         this.textBox.setAttribute( 'position', {x: -1, y: .8, z: -2.3})
@@ -69,13 +69,6 @@ AFRAME.registerComponent('inicio', {
             this.textBox.emit('ocultar')
             this.texto3.emit('ocultar')
         }, timeText + textInterval * 2);
-
-        //remover textos del DOM para optimizar rendimiento
-        // this.textBox.addEventListener('animationend', () => {
-        //     this.el.removeChild(this.texto1)
-        //     this.el.removeChild(this.texto2)
-        //     this.el.removeChild(this.texto3)
-        // })
 
         // funcion para detectar click en el portal
         this.portal.addEventListener('click' , () => {
