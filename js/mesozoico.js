@@ -33,8 +33,26 @@ AFRAME.registerComponent('mesozoico', {
         // Crea elemento escenario ply
         this.createPly('escenario', '#escenario-ply', 0, 0, 0);
 
-        //dino prueba BORRAR ----------------------------------
-        this.createPly('dino', '#dino-ply', 2, .2, -7);
+        //triceratop
+        this.createObj('triceratop', 'triceratop', 3, 1, -1, -45)
+        this.triceratop = document.querySelector('.triceratop')
+        //triceratop texto
+        var textH = 4.5
+        this.createImage('texto-triceratop', 'texto-triceratop', '#texto-triceratop', 2, 3, 2.5, 3.3, 0)
+        this.infotriceratop = document.querySelector('.texto-triceratop')
+        this.infotriceratop.setAttribute( 'rotation', {x: 10, y: -110, z: 0})
+        this.textAnimate(this.infotriceratop, 'showInfoTriceratop', 'hiddeInfoTriceratop', textH)
+
+        this.triceratop.addEventListener('click', () => {
+            this.infotriceratop.emit('mostrar')
+        })
+        this.infotriceratop.addEventListener('mouseleave', () => {
+            this.infotriceratop.emit('ocultar')
+        })
+
+
+        //Oviraptor
+        // this.createObj(this.oviraptor, 'oviraptor', 1, 1, -1.8, 180)
 
         //Mapa
             //0 = nada
@@ -46,7 +64,7 @@ AFRAME.registerComponent('mesozoico', {
             [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,111,0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
@@ -82,7 +100,7 @@ AFRAME.registerComponent('mesozoico', {
                     this.createImage('info-helecho', 'info-helecho', '#helecho-img', posX + 1, 2, posZ + .9, 3.7, 0 )
                 } else if (mapa[x][z] == 3){
                     //arboles
-                    this.createPly('arbol', '#arbol-ply', posX , .2, posZ)
+                    // this.createPly('arbol', '#arbol-ply', posX , .2, posZ)
                 }
             }
         }
@@ -100,7 +118,7 @@ AFRAME.registerComponent('mesozoico', {
         this.infoHelecho.appendChild(this.hiddeText)
 
         //Crear portal 2
-        this.createImage('portal', 'portal-2', '#portal-img', -3, 2, -7, 2.5, 4 )
+        this.createImage('portal', 'portal-2', '#portal-img', 3, 2, -7, 2.5, 4 )
         this.portal = document.querySelector('.portal-2')
 
         //dispara evento cuando mira el portal
@@ -128,6 +146,19 @@ AFRAME.registerComponent('mesozoico', {
         plyEl.setAttribute( 'class', nameEl)
         plyEl.setAttribute( 'position', pos)
     },
+    createObj (nameEl, id, x, y, z, yRotate) {
+        var pos = { x: x, y: y, z: z }
+
+        nameEl = document.createElement('a-obj-model')
+
+        this.el.appendChild(nameEl)
+
+        nameEl.setAttribute( 'src', `#${id}-obj`)
+        nameEl.setAttribute( 'mtl', `#${id}-mtl`)
+        nameEl.setAttribute( 'class', id)
+        nameEl.setAttribute( 'position', pos)
+        nameEl.setAttribute( 'rotation', { x: 0, y: yRotate, z: 0})
+    },
     createImage (nameEl, className, idSrc, x, y, z, w, h) {
         var pos = { x: x, y: y, z: z }
 
@@ -141,6 +172,28 @@ AFRAME.registerComponent('mesozoico', {
         nameEl.setAttribute( 'width', w )
         nameEl.setAttribute( 'height', h )
     },
+    textAnimate (parentEl, nameAnimEnter, nameAnimLeave, h ) {
+        //parentEl = elemento que recibe la animacion
+        //nameAnimEnter = nombre de la animacion para show
+        //nameAnimLeave = nombre de la animacion para hidde
+
+        //animacion mostrar texto
+        nameAnimEnter = document.createElement('a-animation')
+        nameAnimEnter.setAttribute('attribute', 'height')
+        nameAnimEnter.setAttribute('from', 0 )
+        nameAnimEnter.setAttribute('to', h )
+        nameAnimEnter.setAttribute('begin', 'mostrar')
+
+        //animacion ocultar texto
+        nameAnimLeave = document.createElement('a-animation')
+        nameAnimLeave.setAttribute('attribute', 'height')
+        nameAnimLeave.setAttribute('from', h )
+        nameAnimLeave.setAttribute('to', 0 )
+        nameAnimLeave.setAttribute('begin', 'ocultar')
+
+        parentEl.appendChild(nameAnimEnter)
+        parentEl.appendChild(nameAnimLeave)
+},
     remove: function () {
     },
 });

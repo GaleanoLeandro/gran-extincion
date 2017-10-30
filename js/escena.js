@@ -5,7 +5,7 @@ AFRAME.registerComponent('escena', {
         const el = this.el
 
         //Borrar
-        // this.data = 2;
+        this.data = 2;
         //Borrar
 
         this.escena1 = document.createElement('a-entity')
