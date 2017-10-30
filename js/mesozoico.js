@@ -1,52 +1,5 @@
-AFRAME.registerComponent('inicio', {
-    schema: {},
-    init: function () {
-        //this.el = elemento que contiene atributo inicio.
-        const el = this.el,
-            escenaEl = this.el.parentNode,
-            nextState = 2
-        
-        //creacion de elementos
-        this.sky = document.createElement('a-sky'),
-        this.grid = document.createElement('a-grid')
-        
-        //Añadir elementos hijos de this.el
-        el.appendChild(this.sky);
-        el.appendChild(this.grid);
-
-        //Atributos sky
-        this.sky.setAttribute( 'color', 'black')
-
-        //Crea portal 1
-        this.createImage('portal', 'portal-1', '#portal-img', 2.5, 4, { x: 2, y: 2, z: -7 });
-        this.portal = document.querySelector('.portal-1')
-
-        // funcion para detectar click en el portal
-        this.portal.addEventListener('click' , () => {
-            escenaEl.components['escena'].estado(nextState);
-        })
-    },
-    createImage (nameEl, className, idSrc, w, h, pos) {
-        nameEl = document.createElement('a-image')
-
-        this.el.appendChild(nameEl)
-
-        nameEl.setAttribute( 'class', className )
-        nameEl.setAttribute( 'src', idSrc )
-        nameEl.setAttribute( 'width', w )
-        nameEl.setAttribute( 'height', h )
-        nameEl.setAttribute( 'position', pos )
-    },
-    remove: function () {
-    },
-  });
-
-
-
-  //-----------------COMPONENTE MESOZOICA------------------------------
-
-
-  AFRAME.registerComponent('meso', {
+//-----------------COMPONENTE MESOZOICA------------------------------
+AFRAME.registerComponent('mesozoico', {
     schema: {},
     init: function () {
         const el = this.el,
@@ -187,60 +140,6 @@ AFRAME.registerComponent('inicio', {
         nameEl.setAttribute( 'position', pos )
         nameEl.setAttribute( 'width', w )
         nameEl.setAttribute( 'height', h )
-    },
-    remove: function () {
-    },
-  });
-
-
-
-  //-----------------COMPONENTE ESCENA------------------------------
-
-
-
-AFRAME.registerComponent('escena', {
-    schema: {type: 'int', default: 1},
-    init: function () {
-        const el = this.el
-
-        //Borrar
-        // this.data = 2;
-        //Borrar
-
-        this.escena1 = document.createElement('a-entity')
-        
-        el.appendChild(this.escena1)
-
-        this.escena1.setAttribute('inicio', '')
-
-    },
-    estado (estadoNum) {
-        return this.el.setAttribute('escena', estadoNum)
-    },
-    update: function () {
-        var data = this.data
-
-        if (data == 1){
-            //Remover todos los elementos de otros escenarios.
-            this.el.removeChild(this.escena2)
-            
-            //crear componente del escenario actual
-            this.escena1 = document.createElement('a-entity')
-            
-            // agrega componente a la escena
-            this.el.appendChild(this.escena1)
-            
-            this.escena1.setAttribute('inicio', '')
-        }
-        if (data == 2) {
-            this.el.removeChild(this.escena1)
-
-            this.escena2 = document.createElement('a-entity')
-            
-            this.el.appendChild(this.escena2)
-          
-            this.escena2.setAttribute('meso', '')
-        }
     },
     remove: function () {
     },
