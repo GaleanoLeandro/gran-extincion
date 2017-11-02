@@ -32,8 +32,7 @@ AFRAME.registerComponent('escena', {
             this.el.appendChild(this.escena1)
             
             this.escena1.setAttribute('inicio', '')
-        }
-        if (data == 2) {
+        } else if (data == 2) {
             this.el.removeChild(this.escena1)
 
             this.escena2 = document.createElement('a-entity')
