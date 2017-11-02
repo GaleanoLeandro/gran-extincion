@@ -4,7 +4,7 @@ AFRAME.registerComponent('mesozoico', {
     init: function () {
         const el = this.el,
             escenaEl = this.el.parentNode,
-            nextState = 1,
+            nextState = 3,
             //animar helecho
             animate = document.createElement('a-animation')
 

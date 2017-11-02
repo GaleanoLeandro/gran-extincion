@@ -25,10 +25,10 @@ AFRAME.registerComponent('escena', {
             //Remover todos los elementos de otros escenarios.
             this.el.removeChild(this.escena2)
             
-            //crear componente del escenario actual
+            //Crear componente del escenario actual
             this.escena1 = document.createElement('a-entity')
             
-            // agrega componente a la escena
+            //Agrega componente a la escena
             this.el.appendChild(this.escena1)
             
             this.escena1.setAttribute('inicio', '')
@@ -40,6 +40,14 @@ AFRAME.registerComponent('escena', {
             this.el.appendChild(this.escena2)
           
             this.escena2.setAttribute('mesozoico', '')
+        } else if (data == 3) {
+            this.el.removeChild(this.escena2)
+
+            this.escena3 = document.createElement('a-entity')
+
+            this.el.appendChild(this.escena3)
+
+            this.escena3.setAttribute('meteorito', '')
         }
     },
     remove: function () {
