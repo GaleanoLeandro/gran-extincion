@@ -53,10 +53,25 @@ AFRAME.registerComponent('mesozoico', {
             this.infoOviraptor.emit('ocultar')
         })
 
+        // Huevos --------------------------------------------------Cambiar por modelo 3d
+        this.huevos = document.createElement('a-box')
+        this.huevos.setAttribute('color', 'blue')
+        this.huevos.setAttribute('position', { x: 0, y: .5, z: 2.3 })
+
+        el.appendChild(this.huevos)
+
         //Huevos Texto
-        this.createImage('texto-huevos', 'texto-huevos', '#texto-huevos', 0, 1.2, 1.5, 3.8, textH)
+        this.createImage('texto-huevos', 'texto-huevos', '#texto-huevos', 0, 1.2, 1.5, 3.8, 0)
         this.infoHuevos = document.querySelector('.texto-huevos')
         this.infoHuevos.setAttribute('rotation', { x: 0, y: 180, z: 0 })
+        this.textAnimate(this.infoHuevos, 'showInfoHuevos', 'hiddenInfoHuevos', textH)
+
+        this.huevos.addEventListener('click', () => {
+            this.infoHuevos.emit('mostrar')
+        })
+        this.infoHuevos.addEventListener('mouseleave', () => {
+            this.infoHuevos.emit('ocultar')
+        })
 
         //Mapa
             //0 = nada
