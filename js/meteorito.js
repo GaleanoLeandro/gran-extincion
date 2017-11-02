@@ -4,7 +4,7 @@ AFRAME.registerComponent('meteorito', {
     init: function () {
         const el = this.el,
             escenaEl = this.el.parentNode,
-            nextState = 1
+            nextState = 4
 
         this.sky = document.createElement('a-sky');
 
