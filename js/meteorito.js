@@ -85,7 +85,7 @@ AFRAME.registerComponent('meteorito', {
 
         this.el.appendChild(nameEl)
 
-        nameEl.setAttribute('class', className)
+        nameEl.setAttribute('class', `${className} clickeable`)
         nameEl.setAttribute('src', idSrc)
         nameEl.setAttribute('position', pos)
         nameEl.setAttribute('width', w)
