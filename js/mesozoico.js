@@ -82,8 +82,8 @@ AFRAME.registerComponent('mesozoico', {
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,111,0, 0, 0, 0, 0, 1, 0, 0, 0 ],
             [ 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
@@ -108,35 +108,48 @@ AFRAME.registerComponent('mesozoico', {
                 } else if (mapa[x][z] == 2){
                     // config animacion
                     animate.setAttribute('attribute', 'position')
-                    animate.setAttribute('from', `${posX}, .1, ${posZ}` )
-                    animate.setAttribute('to', `${posX} .2 ${posZ}` )
+                    animate.setAttribute('from', `${posX}, .6, ${posZ}` )
+                    animate.setAttribute('to', `${posX} .9 ${posZ}` )
                     animate.setAttribute('direction', 'alternate')
                     animate.setAttribute('repeat', 'indefinide')
-                    //helecho animado
-                    this.createPly('helecho-anim', '#helecho-ply', posX, .1, posZ)  
+
+                    //Wrapper helecho animado
+                    this.helechoWrap = document.createElement('a-box')
+                    this.helechoWrap.setAttribute('position', { x: posX, y: 1, z: posZ})
+                    this.helechoWrap.setAttribute('opacity', 0)
+
+                    //helecho modelo
+                    // this.createPly('helecho-anim', '#helecho-ply', 0, .1, 0) 
+                    this.helechoAnim = document.createElement('a-entity')
+
+                    this.helechoWrap.appendChild(this.helechoAnim)
+
+                    this.helechoAnim.setAttribute('ply-model', { src: '#helecho-ply' })
+                    this.helechoAnim.setAttribute('class', 'clickeable')
+                    this.helechoAnim.setAttribute('position', { x: 0, y: -.5, z: 0 }) 
+                    
+                    el.appendChild(this.helechoWrap)
+
                     
                     //info helecho
-                    this.createImage('info-helecho', 'info-helecho', '#helecho-img', posX + 1, 2, posZ + .9, 3.7, 0 )
+                    this.createImage('info-helecho', 'info-helecho', '#helecho-img', posX + .6, 2, posZ + 2, 3.7, 0 )
                 } else if (mapa[x][z] == 3){
                     //arboles
                     // this.createPly('arbol', '#arbol-ply', posX , .2, posZ)
                 }
             }
         }
-
-        //seleccionar helecho a animar
-        this.helechoAnim = document.querySelector('.helecho-anim') 
         
         // Agregar animacion al helecho
-        this.helechoAnim.appendChild(animate)  
+        this.helechoWrap.appendChild(animate)  
 
         //config informacion helecho
         this.infoHelecho = document.querySelector('.info-helecho')
-        this.infoHelecho.setAttribute( 'rotation', {x: 0, y: 45, z: 0})
-        this.textAnimate(this.infoHelecho, 'infohelecho-show', 'infohelecho-hidden', 1)
+        this.infoHelecho.setAttribute( 'rotation', {x: 0, y: 5, z: 0})
+        this.textAnimate(this.infoHelecho, 'infohelecho-show', 'infohelecho-hidden', 1.6)
 
         //mostrar info helecho
-        this.helechoAnim.addEventListener('click', () => {
+        this.helechoWrap.addEventListener('click', () => {
             this.infoHelecho.emit('mostrar')
         })
         this.infoHelecho.addEventListener('mouseleave', () => {
@@ -163,31 +176,31 @@ AFRAME.registerComponent('mesozoico', {
         plyEl.setAttribute( 'class', nameEl)
         plyEl.setAttribute( 'position', pos)
     },
-    createObj (nameEl, id, x, y, z, yRotate) {
+    createObj(nameEl, id, x, y, z, yRotate) {
         var pos = { x: x, y: y, z: z }
 
         nameEl = document.createElement('a-obj-model')
 
         this.el.appendChild(nameEl)
 
-        nameEl.setAttribute( 'src', `#${id}-obj`)
-        nameEl.setAttribute( 'mtl', `#${id}-mtl`)
-        nameEl.setAttribute( 'class', id)
-        nameEl.setAttribute( 'position', pos)
-        nameEl.setAttribute( 'rotation', { x: 0, y: yRotate, z: 0})
+        nameEl.setAttribute('src', `#${id}-obj`)
+        nameEl.setAttribute('mtl', `#${id}-mtl`)
+        nameEl.setAttribute('class', `${id} clickeable`)
+        nameEl.setAttribute('position', pos)
+        nameEl.setAttribute('rotation', { x: 0, y: yRotate, z: 0 })
     },
-    createImage (nameEl, className, idSrc, x, y, z, w, h) {
+    createImage(nameEl, className, idSrc, x, y, z, w, h) {
         var pos = { x: x, y: y, z: z }
 
         nameEl = document.createElement('a-image')
 
         this.el.appendChild(nameEl)
 
-        nameEl.setAttribute( 'class', className )
-        nameEl.setAttribute( 'src', idSrc )
-        nameEl.setAttribute( 'position', pos )
-        nameEl.setAttribute( 'width', w )
-        nameEl.setAttribute( 'height', h )
+        nameEl.setAttribute('class', `${className} clickeable`)
+        nameEl.setAttribute('src', idSrc)
+        nameEl.setAttribute('position', pos)
+        nameEl.setAttribute('width', w)
+        nameEl.setAttribute('height', h)
     },
     textAnimate (parentEl, nameAnimEnter, nameAnimLeave, h ) {
         //parentEl = elemento que recibe la animacion
