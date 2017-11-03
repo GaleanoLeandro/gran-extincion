@@ -9,12 +9,11 @@ AFRAME.registerComponent('inicio', {
         //creacion de elementos
         this.sky = document.createElement('a-sky'),
         this.grid = document.createElement('a-grid')
-        this.textBox = document.createElement('a-plane')
+        
 
         //Añadir elementos hijos de this.el
         el.appendChild(this.sky);
         el.appendChild(this.grid);
-        el.appendChild(this.textBox);
 
         //Atributos sky
         this.sky.setAttribute( 'color', 'black')
@@ -25,15 +24,8 @@ AFRAME.registerComponent('inicio', {
 
         //Crea luis
         this.createImage('luis', 'luis', '#luis-img', 2.1, 1, -2.3, 2.4, 3.2)
-
-        //config cuadro de textos luis
-        this.textBox.setAttribute( 'position', {x: -1, y: .8, z: -2.3})
-        this.textBox.setAttribute( 'color', '#818184')
-        this.textBox.setAttribute( 'width', 3.9)
-        this.textBox.setAttribute( 'height', 1.1)
-        this.textAnimate(this.textBox, this.showBox, this.showBox);
+        this.luis = document.querySelector('.luis')
         
-
         //Crea texto 1 luis
         this.createImage('texto-1', 'texto-1', '#texto-1', -1, .8, -2.2, 3.9, 0)
         this.texto1 = document.querySelector('.texto-1')
@@ -49,26 +41,62 @@ AFRAME.registerComponent('inicio', {
         this.texto3 = document.querySelector('.texto-3')
         this.textAnimate(this.texto3, this.showText3, this.showText3);
 
-        //funcion mostrar texto
-        var textInit = 1000
-            textInterval = 3000,
-            timeText = textInit + textInterval;
+        var textoLuis = () => {
+            //funcion mostrar texto
+            var textInit = 1000
+                textInterval = 7000,
+                timeText = textInit + textInterval;
 
-        setTimeout(() => {
-            this.texto1.emit('mostrar')
-        }, textInit);
-        setTimeout( () => {
-            this.texto1.emit('ocultar')
-            this.texto2.emit('mostrar')
-        }, timeText);
-        setTimeout(() => {
-            this.texto2.emit('ocultar')
-            this.texto3.emit('mostrar')
-        }, timeText + textInterval);
-        setTimeout(() => {
-            this.textBox.emit('ocultar')
-            this.texto3.emit('ocultar')
-        }, timeText + textInterval * 2);
+            //Cuadro de textos luis
+            this.textBox = document.createElement('a-plane')
+            this.textBox.setAttribute('position', { x: -1, y: .8, z: -2.3 })
+            this.textBox.setAttribute('color', '#818184')
+            this.textBox.setAttribute('width', 3.9)
+            this.textBox.setAttribute('height', 1.1)
+            this.textAnimate(this.textBox, this.showBox, this.showBox);
+
+            el.appendChild(this.textBox);
+
+            setTimeout(() => {
+                this.texto1.emit('mostrar')
+            }, textInit);
+            setTimeout(() => {
+                this.texto1.emit('ocultar')
+                this.texto2.emit('mostrar')
+            }, timeText);
+            setTimeout(() => {
+                this.texto2.emit('ocultar')
+                this.texto3.emit('mostrar')
+            }, timeText + textInterval);
+            setTimeout(() => {
+                this.textBox.emit('ocultar')
+                this.texto3.emit('ocultar')
+            }, timeText + textInterval * 2);
+        }
+
+        var animarBoton = (parentName, nameAnim) =>{
+            nameAnim = document.createElement('a-animation')
+
+            nameAnim.setAttribute( 'attribute', 'scale')
+            nameAnim.setAttribute( 'from', '1 1 1')
+            nameAnim.setAttribute('to', '1.05 1.05 1.05')
+            nameAnim.setAttribute('dur', '1000')
+            nameAnim.setAttribute('direction', 'alternate')
+            nameAnim.setAttribute('repeat', 'indefinide')
+
+
+            parentName.appendChild(nameAnim)
+        }
+
+        this.createImage('btn-comenzar', 'btn-comenzar', '#btn-comenzar', -1, 1, -2.2, 2, .5)
+        this.btnComenzar = document.querySelector('.btn-comenzar')
+        animarBoton(this.btnComenzar, 'btnComenzar');
+
+
+        this.btnComenzar.addEventListener( 'click', () =>{
+            textoLuis();
+            this.el.removeChild(this.btnComenzar)
+        })
 
         // funcion para detectar click en el portal
         this.portal.addEventListener('click' , () => {
