@@ -5,7 +5,7 @@ AFRAME.registerComponent('escena', {
         const el = this.el
 
         //Borrar
-        // this.data = 2;
+        // this.data = 4;
         //Borrar
 
         this.escena1 = document.createElement('a-entity')
@@ -25,40 +25,76 @@ AFRAME.registerComponent('escena', {
         var data = this.data
 
         if (data == 1){
-            //Remover todos los elementos de otros escenarios.
-            this.el.removeChild(this.escena4)
-            
-            //Crear componente del escenario actual
-            this.escena1 = document.createElement('a-entity')
-            
-            //Agrega componente a la escena
-            this.el.appendChild(this.escena1)
-            
-            this.escena1.setAttribute('inicio', '')
+            this.el.emit('showNiebla')
+
+            setTimeout(() => {
+                //Remover todos los elementos de otros escenarios.
+                this.el.removeChild(this.escena4)
+
+                //Crear componente del escenario actual
+                this.escena1 = document.createElement('a-entity')
+
+                //Agrega componente a la escena
+                this.el.appendChild(this.escena1)
+
+                this.escena1.setAttribute('inicio', '')
+            }, 2000);
+
+            setTimeout(() => {
+                this.el.emit('hiddeNiebla')
+            }, 4000);
         } else if (data == 2) {
-            this.el.removeChild(this.escena1)
 
-            this.escena2 = document.createElement('a-entity')
-            
-            this.el.appendChild(this.escena2)
-          
-            this.escena2.setAttribute('mesozoico', '')
+            this.el.emit('showNiebla')
+
+            setTimeout( () => {
+                this.el.removeChild(this.escena1)
+
+                this.escena2 = document.createElement('a-entity')
+
+                this.el.appendChild(this.escena2)
+
+                this.escena2.setAttribute('mesozoico', '')
+            }, 2000);
+
+            setTimeout( ()  => {
+                this.el.emit('hiddeNiebla')
+            }, 4000);
+
         } else if (data == 3) {
-            this.el.removeChild(this.escena2)
+            this.el.emit('showNiebla')
 
-            this.escena3 = document.createElement('a-entity')
+            setTimeout(() => {
+                this.el.removeChild(this.escena2)
 
-            this.el.appendChild(this.escena3)
+                this.escena3 = document.createElement('a-entity')
 
-            this.escena3.setAttribute('meteorito', '')
+                this.el.appendChild(this.escena3)
+
+                this.escena3.setAttribute('meteorito', '')
+            }, 2000);
+
+            setTimeout(() => {
+                this.el.emit('hiddeNiebla')
+            }, 4000);
         } else if (data == 4) {
-            this.el.removeChild(this.escena3)
+            this.el.emit('showNiebla')
 
-            this.escena4 = document.createElement('a-entity')
+            setTimeout(() => {
+                this.el.removeChild(this.escena3)
 
-            this.el.appendChild(this.escena4)
+                this.escena4 = document.createElement('a-entity')
 
-            this.escena4.setAttribute('cenozoico', '')
+                this.el.appendChild(this.escena4)
+
+                this.escena4.setAttribute('cenozoico', '')
+            }, 2000);
+
+            setTimeout(() => {
+                this.el.emit('hiddeNiebla')
+            }, 4000);
+        } else {
+            data = 1;
         }
     },
     remove: function () {

@@ -56,6 +56,7 @@ AFRAME.registerComponent('mesozoico', {
         // Huevos --------------------------------------------------Cambiar por modelo 3d
         this.huevos = document.createElement('a-box')
         this.huevos.setAttribute('color', 'blue')
+        this.huevos.setAttribute('class', 'clickeable')
         this.huevos.setAttribute('position', { x: 0, y: .5, z: 2.3 })
 
         el.appendChild(this.huevos)

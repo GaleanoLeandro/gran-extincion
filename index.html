@@ -16,16 +16,21 @@
     <script src="/js/meteorito.js"></script>
     <script src="/js/escena.js"></script>
     <a-scene class="escena" escena fog="type: exponential; color: black; density: 0;">
-        <!-- <a-animation attribute="fog.density" from="0" to="1"  dur="4000" direction="alternate" repeat="indefinide" ></a-animation>     -->
+        <a-animation begin="showNiebla" easing="ease-in" attribute="fog.density" from="0" to="1"  dur="1500" ></a-animation>    
+        <a-animation begin="hiddeNiebla" easing="ease-out" attribute="fog.density" from="1" to="0" dur="1500"></a-animation>
+
         <a-assets>
                 <!-- MODELOS 3D -->
                 <a-asset-item id="escenario-ply" src="assets/3d-models/taller1.ply"></a-asset-item>
+                <a-asset-item id="escenario-2" src="assets/3d-models/escenario2.ply"></a-asset-item>
                 <a-asset-item id="helecho-ply" src="assets/3d-models/helecho.ply"></a-asset-item>
                 <a-asset-item id="arbol-ply" src="assets/3d-models/arbol.ply"></a-asset-item>
                 <a-asset-item id="triceratop-obj" src="assets/3d-models/triceratop/triceratop.obj"></a-asset-item>   
                 <a-asset-item id="triceratop-mtl" src="assets/3d-models/triceratop/triceratop.mtl"></a-asset-item>
                 <a-asset-item id="oviraptor-obj" src="assets/3d-models/oviraptor/oviraptor.obj"></a-asset-item>   
-                <a-asset-item id="oviraptor-mtl" src="assets/3d-models/oviraptor/oviraptor.mtl"></a-asset-item>
+                <a-asset-item id="oviraptor-mtl" src="assets/3d-models/oviraptor/oviraptor.mtl"></a-asset-item>   
+                <a-asset-item id="t-rex-obj" src="assets/3d-models/t-rex/t-rex.obj"></a-asset-item>
+                <a-asset-item id="t-rex-mtl" src="assets/3d-models/t-rex/t-rex.mtl"></a-asset-item>
 
                 <!-- IMAGENES -->
                 <img id="portal-img" src="assets/img/portal.png">
@@ -37,6 +42,10 @@
                 <img id="texto-triceratop" src="assets/img/triceratop-texto.png">
                 <img id="texto-oviraptor" src="assets/img/oviraptor-texto.png">
                 <img id="texto-huevos" src="assets/img/huevos-texto.png">
+                <img id="texto-t-rex" src="assets/img/texto-t-rex.png">
+                <img id="texto-hadrosaurus" src="assets/img/texto-hadrosaurus.png">
+                <img id="texto-beelzebufo" src="assets/img/texto-beelzebufo.png">
+                <img id="texto-sarcosuchus" src="assets/img/texto-sarcosuchus.png">
         </a-assets>
 
 
@@ -46,6 +55,8 @@
                     position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
                     material="color: black; shader: flat">
                     <a-animation begin="cursor-hovering" easing="linear" attribute="geometry.thetaLength" dur="1000" from="0" to="360"></a-animation>
+                    <a-animation begin="cursor-hovering" easing="linear" attribute="material.color" dur="100" from="black" to="orangered"></a-animation>
+                    <a-animation begin="mouseleave" easing="linear" attribute="material.color" dur="50" from="orangered" to="black"></a-animation>
                     <a-animation begin="mouseleave" easing="linear" attribute="geometry.thetaLength" dur="50" from="0" to="360"></a-animation>
                 </a-entity>
         </a-entity>
