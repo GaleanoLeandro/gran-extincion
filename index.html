@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,24 +16,32 @@
     <a-scene class="escena" escena fog="type: exponential; color: black; density: 0;">
         <!-- <a-animation attribute="fog.density" from="0" to="1"  dur="4000" direction="alternate" repeat="indefinide" ></a-animation>     -->
         <a-assets>
-                <!-- MODELOS 3D -->
-                <a-asset-item id="escenario-ply" src="assets/3d-models/taller1.ply"></a-asset-item>
-                <a-asset-item id="helecho-ply" src="assets/3d-models/helecho.ply"></a-asset-item>
-                <a-asset-item id="arbol-ply" src="assets/3d-models/arbol.ply"></a-asset-item>
-                <a-asset-item id="dino-ply" src="assets/3d-models/dino.ply"></a-asset-item>   
-                
-                <!-- IMAGENES -->
-                <img id="portal-img" src="assets/img/portal.png">
-                <img id="helecho-img" src="assets/img/info-helecho.png">
-                <img id="luis-img" src="assets/img/luis.png">
-                <img id="texto-1" src="assets/img/texto-1.png">
+            <!-- MODELOS 3D -->
+            <a-asset-item id="escenario-ply" src="assets/3d-models/taller2.ply"></a-asset-item>
+            <a-asset-item id="helecho-ply" src="assets/3d-models/helecho.ply"></a-asset-item>
+            <a-asset-item id="arbol-ply" src="assets/3d-models/arbol.ply"></a-asset-item>
+            <a-asset-item id="triceratop-obj" src="assets/3d-models/triceratop/triceratop.obj"></a-asset-item>
+            <a-asset-item id="triceratop-mtl" src="assets/3d-models/triceratop/triceratop.mtl"></a-asset-item>
+            <a-asset-item id="oviraptor-obj" src="assets/3d-models/oviraptor/oviraptor.obj"></a-asset-item>
+            <a-asset-item id="oviraptor-mtl" src="assets/3d-models/oviraptor/oviraptor.mtl"></a-asset-item>
+            <a-asset-item id="trex-obj" src="assets/3d-models/trex/trex.obj"></a-asset-item>
+            <a-asset-item id="trex-mtl" src="assets/3d-models/trex/trex.mtl"></a-asset-item>
+            <a-asset-item id="trex-mtl" src="assets/3d-models/trex/trex.mtl"></a-asset-item>
+            <!-- IMAGENES -->
+            <img id="portal-img" src="assets/img/portal.png">
+            <img id="helecho-img" src="assets/img/info-helecho.png">
+            <img id="luis-img" src="assets/img/luis.png">
+            <img id="texto-1" src="assets/img/texto-1.png">
+            <img id="texto-rio" src="assets/img/texto-rio.png">
+            <img id="texto-crater" src="assets/img/texto-crater.png">
+            <img id="texto-meteorito" src="assets/img/texto-meteorito.png">
+            <img id="texto-iridio" src="assets/img/texto-iridio.png">
+            <img id="texto-otroscrateres" src="assets/img/texto-otroscrateres.png">
         </a-assets>
-
-
-        <a-entity class="cam-js" camera universal-controls="movementControls: checkpoint" checkpoint-controls="mode: animate; animateSpeed: 5" position="0 1.6 0">
-                <a-cursor fuse="true" color="grey" fuse-timeout="300"></a-cursor>
+        <a-entity class="cam-js" camera universal-controls="movementControls: checkpoint" checkpoint-controls="mode: animate; animateSpeed: 5"
+            position="0 1.6 0">
+            <a-cursor fuse="true" color="grey" fuse-timeout="300"></a-cursor>
         </a-entity>
     </a-scene>
 </body>
-
 </html>
