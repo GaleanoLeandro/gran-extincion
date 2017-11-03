@@ -14,18 +14,14 @@ AFRAME.registerComponent('escena', {
 
         this.escena1.setAttribute('inicio', '')
 
-        setTimeout(function() {
+        el.addEventListener('model-loaded', () => {
             document.querySelector('[raycaster]').components.raycaster.refreshObjects();
-        }, 500);
+        })
     },
     estado (estadoNum) {
         return this.el.setAttribute('escena', estadoNum)
     },
     update: function () {
-        setTimeout(function () {
-            document.querySelector('[raycaster]').components.raycaster.refreshObjects();
-        }, 1000);
-
         var data = this.data
 
         if (data == 1){
