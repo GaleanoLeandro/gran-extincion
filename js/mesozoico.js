@@ -76,7 +76,7 @@ AFRAME.registerComponent('mesozoico', {
                     animate.setAttribute('direction', 'alternate')
                     animate.setAttribute('repeat', 'indefinide')
                     //helecho animado
-                    this.createPly('helecho-anim', '#helecho-ply', posX, .1, posZ)  
+                    this.createPly('helecho-anim clickeable', '#helecho-ply', posX, .1, posZ)  
                     
                     //info helecho
                     this.createImage('info-helecho', 'info-helecho', '#helecho-img', posX + 1, 2, posZ + .9, 3.7, 0 )
@@ -117,6 +117,10 @@ AFRAME.registerComponent('mesozoico', {
         this.infoHelecho.addEventListener('mouseleave' , () => {
             this.infoHelecho.emit('ocultar')
         })
+
+        setTimeout(function() {
+            document.querySelector('[raycaster]').components.raycaster.refreshObjects();
+        }, 500);
     },
     //funcion para importar modelos ply.
     createPly(nameEl, id, x, y, z) {
