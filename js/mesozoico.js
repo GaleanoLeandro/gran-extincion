@@ -10,21 +10,6 @@ AFRAME.registerComponent('mesozoico', {
 
         this.sky = document.createElement('a-sky');
 
-        //animacion mostrar texto
-        this.showText = document.createElement('a-animation')
-        this.showText.setAttribute('attribute', 'height')
-        this.showText.setAttribute('from', 0 )
-        this.showText.setAttribute('to', 1 )
-        this.showText.setAttribute('begin', 'mostrar')
-        
-
-        //animacion ocultar texto
-        this.hiddeText = document.createElement('a-animation')
-        this.hiddeText.setAttribute('attribute', 'height')
-        this.hiddeText.setAttribute('from', 1 )
-        this.hiddeText.setAttribute('to', 0 )
-        this.hiddeText.setAttribute('begin', 'ocultar')
-
         el.appendChild(this.sky);
         
         //Atributos sky
@@ -34,13 +19,13 @@ AFRAME.registerComponent('mesozoico', {
         this.createPly('escenario', '#escenario-ply', 0, 0, 0);
 
         //triceratop
-        this.createObj('triceratop', 'triceratop', 3, 1, -1, -45)
+        this.createObj('triceratop', 'triceratop', 5, .3, -.5, -55)
         this.triceratop = document.querySelector('.triceratop')
         //triceratop texto 1
-        var textH = 2.5
-        this.createImage('texto-triceratop', 'texto-triceratop-1', '#texto-triceratop-1', 1.4, 2, 2.2, 3.8, 0)
-        this.infotriceratop = document.querySelector('.texto-triceratop-1')
-        this.infotriceratop.setAttribute( 'rotation', {x: 0, y: -140, z: 0})
+        var textH = 1.7;
+        this.createImage('texto-triceratop', 'texto-triceratop', '#texto-triceratop', 1.5, 1.6, 0, 3.8, 0)
+        this.infotriceratop = document.querySelector('.texto-triceratop')
+        this.infotriceratop.setAttribute( 'rotation', {x: 0, y: -90, z: 0})
         this.textAnimate(this.infotriceratop, 'showInfoTriceratop', 'hiddeInfoTriceratop', textH)
 
         this.triceratop.addEventListener('click', () => {
@@ -50,9 +35,43 @@ AFRAME.registerComponent('mesozoico', {
             this.infotriceratop.emit('ocultar')
         })
 
-
         //Oviraptor
-        // this.createObj(this.oviraptor, 'oviraptor', 1, 1, -1.8, 180)
+        this.createObj('oviraptor', 'oviraptor', -2.6, .2, -0.7, -135)
+        this.oviraptor = document.querySelector('.oviraptor')
+
+        //Oviraptor texto
+        this.createImage('texto-oviraptor', 'texto-oviraptor', '#texto-oviraptor', -1.2, 1.2, -.2, 3.8, 0)
+        this.infoOviraptor = document.querySelector('.texto-oviraptor')
+        this.infoOviraptor.setAttribute('rotation', { x: 0, y: 80, z: 0 })
+        this.textAnimate(this.infoOviraptor, 'showInfoOviraptor', 'hiddeInfoOviraptor', textH)
+
+        //Animacion info oviraptor
+        this.oviraptor.addEventListener('click', () => {
+            this.infoOviraptor.emit('mostrar')
+        })
+        this.infoOviraptor.addEventListener('mouseleave', () => {
+            this.infoOviraptor.emit('ocultar')
+        })
+
+        // Huevos --------------------------------------------------Cambiar por modelo 3d
+        this.huevos = document.createElement('a-box')
+        this.huevos.setAttribute('color', 'blue')
+        this.huevos.setAttribute('position', { x: 0, y: .5, z: 2.3 })
+
+        el.appendChild(this.huevos)
+
+        //Huevos Texto
+        this.createImage('texto-huevos', 'texto-huevos', '#texto-huevos', 0, 1.2, 1.5, 3.8, 0)
+        this.infoHuevos = document.querySelector('.texto-huevos')
+        this.infoHuevos.setAttribute('rotation', { x: 0, y: 180, z: 0 })
+        this.textAnimate(this.infoHuevos, 'showInfoHuevos', 'hiddenInfoHuevos', textH)
+
+        this.huevos.addEventListener('click', () => {
+            this.infoHuevos.emit('mostrar')
+        })
+        this.infoHuevos.addEventListener('mouseleave', () => {
+            this.infoHuevos.emit('ocultar')
+        })
 
         //Mapa
             //0 = nada
@@ -60,20 +79,20 @@ AFRAME.registerComponent('mesozoico', {
             //2 = helecho animado
             //3 = arbol
         var mapa = [
-            [ 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0 ],
-            [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,111,0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,111,0, 0, 0, 0, 0, 1, 0, 0, 0 ],
+            [ 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
+            [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
             [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
-            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+            [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
         ]
 
         //posicionar elementos repetidos
@@ -114,8 +133,15 @@ AFRAME.registerComponent('mesozoico', {
         //config informacion helecho
         this.infoHelecho = document.querySelector('.info-helecho')
         this.infoHelecho.setAttribute( 'rotation', {x: 0, y: 45, z: 0})
-        this.infoHelecho.appendChild(this.showText)
-        this.infoHelecho.appendChild(this.hiddeText)
+        this.textAnimate(this.infoHelecho, 'infohelecho-show', 'infohelecho-hidden', 1)
+
+        //mostrar info helecho
+        this.helechoAnim.addEventListener('click', () => {
+            this.infoHelecho.emit('mostrar')
+        })
+        this.infoHelecho.addEventListener('mouseleave', () => {
+            this.infoHelecho.emit('ocultar')
+        })
 
         //Crear portal 2
         this.createImage('portal', 'portal-2', '#portal-img', 3, 2, -7, 2.5, 4 )
@@ -124,15 +150,6 @@ AFRAME.registerComponent('mesozoico', {
         //dispara evento cuando mira el portal
          this.portal.addEventListener('click' , () => {
             escenaEl.components['escena'].estado(nextState);
-        })
-
-        //mostrar info helecho
-        this.helechoAnim.addEventListener('click', () => {
-            //animar info helecho
-            this.infoHelecho.emit('mostrar')
-        })
-        this.infoHelecho.addEventListener('mouseleave' , () => {
-            this.infoHelecho.emit('ocultar')
         })
     },
     //funcion para importar modelos ply.
@@ -193,7 +210,7 @@ AFRAME.registerComponent('mesozoico', {
 
         parentEl.appendChild(nameAnimEnter)
         parentEl.appendChild(nameAnimLeave)
-},
+    },
     remove: function () {
     },
 });

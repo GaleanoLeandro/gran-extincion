@@ -1,22 +1,24 @@
 # Blender MTL File: 'oviraptor.blend'
 # Material Count: 2
 
-newmtl featheredRaptor_D.jpg
-Ns 96.078431
+newmtl featheredRaptor_D.jpg.001
+Ns 92.156863
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.467200 0.467200 0.467200
 Ni 1.000000
 d 1.000000
-illum 2
+illum 1
+map_Kd featheredRaptor_D.jpg
 
-newmtl featheredRaptorwings_D.jpg
-Ns 96.078431
+newmtl featheredRaptorwings_D.jpg.001
+Ns 92.156863
 Ka 1.000000 1.000000 1.000000
 Kd 0.640000 0.640000 0.640000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.313600 0.313600 0.313600
 Ni 1.000000
 d 1.000000
-illum 2
+illum 1
+map_Kd featheredRaptorwings_D.jpg
