@@ -10,10 +10,30 @@ AFRAME.registerComponent('cenozoico', {
         el.appendChild(this.sky);
 
         //Atributos sky
-        this.sky.setAttribute('color', 'green')
+        this.sky.setAttribute('color', 'skyblue')
 
         // Crea elemento escenario ply
         this.createPly('escenario', '#escenario-ply', 0, 0, 0);
+
+        //Altura Tarjetas
+        var textH = 1.7;
+
+        //T-rex
+        this.createObj('t-rex' , 't-rex', 4, .4, -7, 180)
+        this.tRex = document.querySelector('.t-rex')
+
+        //T-rex texto 
+        this.createImage('texto-t-rex', 'texto-t-rex', '#texto-t-rex', .8, 2, -1.2, 3.8, 0 )
+        this.infoRex = document.querySelector('.texto-t-rex')
+        this.infoRex.setAttribute('rotation', { x: 0, y: -30, z: 0 })
+        this.textAnimate(this.infoRex, 'showInfoRex', 'hiddeInfoRex', textH)
+
+        this.tRex.addEventListener('click', () => {
+            this.infoRex.emit('mostrar')
+        })
+        this.infoRex.addEventListener('mouseleave', () => {
+            this.infoRex.emit('ocultar')
+        })
 
         //Mapa
         //0 = nada
@@ -74,6 +94,19 @@ AFRAME.registerComponent('cenozoico', {
         plyEl.setAttribute('class', nameEl)
         plyEl.setAttribute('position', pos)
     },
+    createObj(nameEl, id, x, y, z, yRotate) {
+        var pos = { x: x, y: y, z: z }
+
+        nameEl = document.createElement('a-obj-model')
+
+        this.el.appendChild(nameEl)
+
+        nameEl.setAttribute('src', `#${id}-obj`)
+        nameEl.setAttribute('mtl', `#${id}-mtl`)
+        nameEl.setAttribute('class', `${id} clickeable`)
+        nameEl.setAttribute('position', pos)
+        nameEl.setAttribute('rotation', { x: 0, y: yRotate, z: 0 })
+    },
     createImage(nameEl, className, idSrc, x, y, z, w, h) {
         var pos = { x: x, y: y, z: z }
 
@@ -81,11 +114,33 @@ AFRAME.registerComponent('cenozoico', {
 
         this.el.appendChild(nameEl)
 
-        nameEl.setAttribute('class', className)
+        nameEl.setAttribute('class', `${className} clickeable`)
         nameEl.setAttribute('src', idSrc)
         nameEl.setAttribute('position', pos)
         nameEl.setAttribute('width', w)
         nameEl.setAttribute('height', h)
+    },
+    textAnimate(parentEl, nameAnimEnter, nameAnimLeave, h) {
+        //parentEl = elemento que recibe la animacion
+        //nameAnimEnter = nombre de la animacion para show
+        //nameAnimLeave = nombre de la animacion para hidde
+
+        //animacion mostrar texto
+        nameAnimEnter = document.createElement('a-animation')
+        nameAnimEnter.setAttribute('attribute', 'height')
+        nameAnimEnter.setAttribute('from', 0)
+        nameAnimEnter.setAttribute('to', h)
+        nameAnimEnter.setAttribute('begin', 'mostrar')
+
+        //animacion ocultar texto
+        nameAnimLeave = document.createElement('a-animation')
+        nameAnimLeave.setAttribute('attribute', 'height')
+        nameAnimLeave.setAttribute('from', h)
+        nameAnimLeave.setAttribute('to', 0)
+        nameAnimLeave.setAttribute('begin', 'ocultar')
+
+        parentEl.appendChild(nameAnimEnter)
+        parentEl.appendChild(nameAnimLeave)
     },
     remove: function () {
     },
