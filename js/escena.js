@@ -14,6 +14,9 @@ AFRAME.registerComponent('escena', {
 
         this.escena1.setAttribute('inicio', '')
 
+        setTimeout(function() {
+            document.querySelector('[raycaster]').components.raycaster.refreshObjects();
+        }, 500);
     },
     estado (estadoNum) {
         return this.el.setAttribute('escena', estadoNum)
@@ -57,6 +60,9 @@ AFRAME.registerComponent('escena', {
 
             this.escena4.setAttribute('cenozoico', '')
         }
+        setTimeout(function () {
+            document.querySelector('[raycaster]').components.raycaster.refreshObjects();
+        }, 800);
     },
     remove: function () {
     },

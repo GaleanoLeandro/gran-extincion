@@ -128,7 +128,8 @@ AFRAME.registerComponent('mesozoico', {
         this.helechoAnim = document.querySelector('.helecho-anim')
         
         // Agregar animacion al helecho
-        this.helechoAnim.appendChild(animate)  
+        this.helechoAnim.appendChild(animate) 
+        this.helechoAnim.setAttribute('class', 'clickeable') 
 
         //config informacion helecho
         this.infoHelecho = document.querySelector('.info-helecho')
@@ -146,7 +147,6 @@ AFRAME.registerComponent('mesozoico', {
         //Crear portal 2
         this.createImage('portal', 'portal-2', '#portal-img', 3, 2, -7, 2.5, 4 )
         this.portal = document.querySelector('.portal-2')
-        this.portal.setAttribute('class', 'clickeable')
 
         //dispara evento cuando mira el portal
          this.portal.addEventListener('click' , () => {
@@ -173,7 +173,7 @@ AFRAME.registerComponent('mesozoico', {
 
         nameEl.setAttribute( 'src', `#${id}-obj`)
         nameEl.setAttribute( 'mtl', `#${id}-mtl`)
-        nameEl.setAttribute( 'class', id)
+        nameEl.setAttribute('class', `${id} clickeable`)
         nameEl.setAttribute( 'position', pos)
         nameEl.setAttribute( 'rotation', { x: 0, y: yRotate, z: 0})
     },
@@ -184,7 +184,7 @@ AFRAME.registerComponent('mesozoico', {
 
         this.el.appendChild(nameEl)
 
-        nameEl.setAttribute( 'class', className )
+        nameEl.setAttribute( 'class', `${className} clickeable` )
         nameEl.setAttribute( 'src', idSrc )
         nameEl.setAttribute( 'position', pos )
         nameEl.setAttribute( 'width', w )
