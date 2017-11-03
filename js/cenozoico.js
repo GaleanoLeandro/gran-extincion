@@ -13,7 +13,7 @@ AFRAME.registerComponent('cenozoico', {
         this.sky.setAttribute('color', 'skyblue')
 
         // Crea elemento escenario ply
-        this.createPly('escenario', '#escenario-ply', 0, 0, 0);
+        this.createPly('escenario', '#escenario-2', 0, -1, 0);
 
         //Altura Tarjetas
         var textH = 1.7;
@@ -33,6 +33,66 @@ AFRAME.registerComponent('cenozoico', {
         })
         this.infoRex.addEventListener('mouseleave', () => {
             this.infoRex.emit('ocultar')
+        })
+
+        // Hadrosaurus --------------------------------------------------Cambiar por modelo 3d
+        this.hadrosaurus = document.createElement('a-box')
+        this.hadrosaurus.setAttribute('color', '#FFFFFF')
+        this.hadrosaurus.setAttribute('position', { x: 5, y: .5, z: 0 })
+
+        el.appendChild(this.hadrosaurus)
+
+        //hadrosaurus Texto
+        this.createImage('texto-hadrosaurus', 'texto-hadrosaurus', '#texto-hadrosaurus', 1.5, 1.6, 0, 3.8, 0)
+        this.infohadrosaurus = document.querySelector('.texto-hadrosaurus')
+        this.infohadrosaurus.setAttribute('rotation', { x: 0, y: -90, z: 0 })
+        this.textAnimate(this.infohadrosaurus, 'showInfoHadrosaurus', 'hiddenInfoHadrosaurus', textH)
+
+        this.hadrosaurus.addEventListener('click', () => {
+            this.infohadrosaurus.emit('mostrar')
+        })
+        this.infohadrosaurus.addEventListener('mouseleave', () => {
+            this.infohadrosaurus.emit('ocultar')
+        })
+
+        // Beelzebufo --------------------------------------------------Cambiar por modelo 3d
+        this.beelzebufo = document.createElement('a-box')
+        this.beelzebufo.setAttribute('color', '#FFFFFF')
+        this.beelzebufo.setAttribute('position', { x: -5, y: .5, z: 0 })
+
+        el.appendChild(this.beelzebufo)
+
+        //beelzebufo Texto
+        this.createImage('texto-beelzebufo', 'texto-beelzebufo', '#texto-beelzebufo', -1.5, 1.6, 0, 3.8, 0)
+        this.infobeelzebufo = document.querySelector('.texto-beelzebufo')
+        this.infobeelzebufo.setAttribute('rotation', { x: 0, y: 90, z: 0 })
+        this.textAnimate(this.infobeelzebufo, 'showInfobeelzebufo', 'hiddenInfobeelzebufo', textH)
+
+        this.beelzebufo.addEventListener('click', () => {
+            this.infobeelzebufo.emit('mostrar')
+        })
+        this.infobeelzebufo.addEventListener('mouseleave', () => {
+            this.infobeelzebufo.emit('ocultar')
+        })
+
+        // Sarcosuchus --------------------------------------------------Cambiar por modelo 3d
+        this.sarcosuchus = document.createElement('a-box')
+        this.sarcosuchus.setAttribute('color', '#FFFFFF')
+        this.sarcosuchus.setAttribute('position', { x: 0, y: .5, z: 4 })
+
+        el.appendChild(this.sarcosuchus)
+
+        //Sarcosuchus Texto
+        this.createImage('texto-sarcosuchus', 'texto-sarcosuchus', '#texto-sarcosuchus', 0, 1.6, 1.5, 3.8, 0)
+        this.infosarcosuchus = document.querySelector('.texto-sarcosuchus')
+        this.infosarcosuchus.setAttribute('rotation', { x: 0, y: 180, z: 0 })
+        this.textAnimate(this.infosarcosuchus, 'showInfosarcosuchus', 'hiddenInfosarcosuchus', textH)
+
+        this.sarcosuchus.addEventListener('click', () => {
+            this.infosarcosuchus.emit('mostrar')
+        })
+        this.infosarcosuchus.addEventListener('mouseleave', () => {
+            this.infosarcosuchus.emit('ocultar')
         })
 
         //Mapa
@@ -75,7 +135,7 @@ AFRAME.registerComponent('cenozoico', {
         }
 
         //Crear portal 2
-        this.createImage('portal', 'portal-2', '#portal-img', -3, 2, -7, 2.5, 4)
+        this.createImage('portal', 'portal-2', '#portal-img', -4, 2, -7, 2.5, 4)
         this.portal = document.querySelector('.portal-2')
 
         //dispara evento cuando mira el portal
