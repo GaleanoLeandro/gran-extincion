@@ -125,7 +125,7 @@ AFRAME.registerComponent('mesozoico', {
         }
 
         //seleccionar helecho a animar
-        this.helechoAnim = document.querySelector('.helecho-anim') 
+        this.helechoAnim = document.querySelector('.helecho-anim')
         
         // Agregar animacion al helecho
         this.helechoAnim.appendChild(animate)  
@@ -146,6 +146,7 @@ AFRAME.registerComponent('mesozoico', {
         //Crear portal 2
         this.createImage('portal', 'portal-2', '#portal-img', 3, 2, -7, 2.5, 4 )
         this.portal = document.querySelector('.portal-2')
+        this.portal.setAttribute('class', 'clickeable')
 
         //dispara evento cuando mira el portal
          this.portal.addEventListener('click' , () => {

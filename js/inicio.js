@@ -17,11 +17,12 @@ AFRAME.registerComponent('inicio', {
         el.appendChild(this.textBox);
 
         //Atributos sky
-        this.sky.setAttribute( 'color', 'black')
+        this.sky.setAttribute( 'color', '#FFFFFF')
 
         //Crea portal 1
         this.createImage('portal', 'portal-1', '#portal-img', -4, 2, -7, 2.5, 4)
         this.portal = document.querySelector('.portal-1')
+        this.portal.setAttribute('class', 'clickeable')
 
         //Crea luis
         this.createImage('luis', 'luis', '#luis-img', 2.1, 1, -2.3, 2.4, 3.2)
