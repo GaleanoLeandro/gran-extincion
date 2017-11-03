@@ -1,0 +1,13 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl Eyelids_me
+Ns 11.764706
+Ka 0.584300 0.584300 0.584300
+Kd 0.584300 0.584300 0.584300
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd Trex.png
