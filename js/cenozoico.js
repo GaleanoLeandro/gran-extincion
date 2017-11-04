@@ -101,6 +101,7 @@ AFRAME.registerComponent('cenozoico', {
         // otras hipotesis --------------------------------------------------Cambiar por modelo 3d
         this.hipotesis = document.createElement('a-box')
         this.hipotesis.setAttribute('color', '#FFFFFF')
+        this.hipotesis.setAttribute('class', 'clickeable')
         this.hipotesis.setAttribute('position', { x: -4, y: .5, z: 4.3 })
 
         el.appendChild(this.hipotesis)
