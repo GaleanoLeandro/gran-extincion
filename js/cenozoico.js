@@ -98,6 +98,26 @@ AFRAME.registerComponent('cenozoico', {
             this.infosarcosuchus.emit('ocultar')
         })
 
+        // otras hipotesis --------------------------------------------------Cambiar por modelo 3d
+        this.hipotesis = document.createElement('a-box')
+        this.hipotesis.setAttribute('color', '#FFFFFF')
+        this.hipotesis.setAttribute('position', { x: -4, y: .5, z: 4.3 })
+
+        el.appendChild(this.hipotesis)
+
+        //hipotesis Texto
+        this.createImage('texto-hipotesis', 'texto-hipotesis', '#texto-hipotesis', -1.2, 1.6, 1.2, 3.8, 0)
+        this.infohipotesis = document.querySelector('.texto-hipotesis')
+        this.infohipotesis.setAttribute('rotation', { x: 0, y: 140, z: 0 })
+        this.textAnimate(this.infohipotesis, 'showInfohipotesis', 'hiddenInfohipotesis', textH)
+
+        this.hipotesis.addEventListener('click', () => {
+            this.infohipotesis.emit('mostrar')
+        })
+        this.infohipotesis.addEventListener('mouseleave', () => {
+            this.infohipotesis.emit('ocultar')
+        })
+
         //Mapa
         //0 = nada
         //1 = helecho
