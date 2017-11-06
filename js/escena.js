@@ -5,7 +5,7 @@ AFRAME.registerComponent('escena', {
         const el = this.el
 
         //Borrar
-        // this.data = 4;
+        // this.data = 3;
         //Borrar
 
         this.escena1 = document.createElement('a-entity')
@@ -66,6 +66,7 @@ AFRAME.registerComponent('escena', {
 
             setTimeout(() => {
                 this.el.removeChild(this.escena2)
+                // this.el.removeChild(this.escena1)
 
                 this.escena3 = document.createElement('a-entity')
 
