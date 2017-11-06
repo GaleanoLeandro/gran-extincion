@@ -110,16 +110,13 @@ AFRAME.registerComponent('meteorito', {
             this.infocrater.emit('ocultar')
         })
 
-        // meteorito --------------------------------------------------Cambiar por modelo 3d
-        this.meteorito = document.createElement('a-box')
-        this.meteorito.setAttribute('color', 'blue')
+        //meteorito
+        this.createPly('meteorito', '#meteorito-ply', 3, 4.4, 0.2)
+        this.meteorito = document.querySelector('.meteorito')
         this.meteorito.setAttribute('class', 'clickeable')
-        this.meteorito.setAttribute('position', { x: 2.2, y: 3, z: .3 })
-
-        el.appendChild(this.meteorito)
 
         // meteorito texto----------
-        this.createImage('texto-meteorito', 'texto-meteorito', '#texto-meteorito', 1.3, 2.3, 0.2, 3.8, 0)
+        this.createImage('texto-meteorito', 'texto-meteorito', '#texto-meteorito', 1.1, 2.8, 0.2, 3.8, 0)
         this.infometeorito = document.querySelector('.texto-meteorito')
         this.infometeorito.setAttribute('rotation', { x: 30, y: -90, z: 0 })
         this.textAnimate(this.infometeorito, 'showInfometeorito', 'hiddenInfometeorito', textH)
