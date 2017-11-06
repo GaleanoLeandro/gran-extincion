@@ -54,11 +54,13 @@ AFRAME.registerComponent('mesozoico', {
         })
 
         // Huevos --------------------------------------------------Cambiar por modelo 3d
-        this.huevos = document.createElement('a-box')
-        this.huevos.setAttribute('color', 'blue')
-        this.huevos.setAttribute('position', { x: 0, y: .5, z: 2.3 })
+        // this.huevos = document.createElement('a-box')
+        // this.huevos.setAttribute('color', 'blue')
+        // this.huevos.setAttribute('position', { x: 0, y: .5, z: 2.3 })
 
-        el.appendChild(this.huevos)
+        // el.appendChild(this.huevos)
+        this.createObj('huevos', 'huevos', 0, .2, 2.7, 0)
+        this.huevos = document.querySelector('.huevos')
 
         //Huevos Texto
         this.createImage('texto-huevos', 'texto-huevos', '#texto-huevos', 0, 1.2, 1.5, 3.8, 0)
