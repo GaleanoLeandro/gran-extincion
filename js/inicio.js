@@ -19,27 +19,28 @@ AFRAME.registerComponent('inicio', {
         this.sky.setAttribute( 'color', 'black')
 
         //Crea portal 1
-        this.createImage('portal', 'portal-1', '#portal-img', -4, 2, -7, 2.5, 4)
+        this.createImage('portal', 'portal-1', '#portal-img', -4, 2, -7, 2.5, 0)
         this.portal = document.querySelector('.portal-1')
+        this.textAnimate(this.portal, 'showPortal', 'hiddePortal', 4)
 
         //Crea luis
         this.createImage('luis', 'luis', '#luis-img', 2.1, 1, -2.3, 2.4, 3.2)
         this.luis = document.querySelector('.luis')
         
         //Crea texto 1 luis
-        this.createImage('texto-1', 'texto-1', '#texto-1', -1, .8, -2.2, 3.9, 0)
+        this.createImage('texto-1', 'texto-1', '#texto-1', -1, .85, -2.2, 3.9, 0)
         this.texto1 = document.querySelector('.texto-1')
-        this.textAnimate(this.texto1, this.showText1, this.showText1);
+        this.textAnimate(this.texto1, this.showText1, this.showText1, 1.1);
 
         //Crea texto 2 luis
-        this.createImage('texto-2', 'texto-2', '#texto-2', -1, .8, -2.2, 3.9, 0)
+        this.createImage('texto-2', 'texto-2', '#texto-2', -1, .85, -2.2, 3.9, 0)
         this.texto2 = document.querySelector('.texto-2')
-        this.textAnimate(this.texto2, this.showText2, this.showText2);
+        this.textAnimate(this.texto2, this.showText2, this.showText2, 1.1);
         
         //Crea texto 3 luis
-        this.createImage('texto-3', 'texto-3', '#texto-3', -1, .8, -2.2, 3.9, 0)
+        this.createImage('texto-3', 'texto-3', '#texto-3', -1, .85, -2.2, 3.9, 0)
         this.texto3 = document.querySelector('.texto-3')
-        this.textAnimate(this.texto3, this.showText3, this.showText3);
+        this.textAnimate(this.texto3, this.showText3, this.showText3, 1.1);
 
         var textoLuis = () => {
             //funcion mostrar texto
@@ -50,14 +51,15 @@ AFRAME.registerComponent('inicio', {
             //Cuadro de textos luis
             this.textBox = document.createElement('a-plane')
             this.textBox.setAttribute('position', { x: -1, y: .8, z: -2.3 })
-            this.textBox.setAttribute('color', '#818184')
+            this.textBox.setAttribute('color', '#181818')
             this.textBox.setAttribute('width', 3.9)
-            this.textBox.setAttribute('height', 1.1)
-            this.textAnimate(this.textBox, this.showBox, this.showBox);
+            this.textBox.setAttribute('height', 0)
+            this.textAnimate(this.textBox, this.showBox, this.showBox, 1.1);
 
             el.appendChild(this.textBox);
 
             setTimeout(() => {
+                this.textBox.emit('mostrar')
                 this.texto1.emit('mostrar')
             }, textInit);
             setTimeout(() => {
@@ -67,6 +69,7 @@ AFRAME.registerComponent('inicio', {
             setTimeout(() => {
                 this.texto2.emit('ocultar')
                 this.texto3.emit('mostrar')
+                this.portal.emit('mostrar')
             }, timeText + textInterval);
             setTimeout(() => {
                 this.textBox.emit('ocultar')
@@ -103,7 +106,7 @@ AFRAME.registerComponent('inicio', {
             escenaEl.components['escena'].estado(nextState)
         })
     },
-    textAnimate (parentEl, nameAnimEnter, nameAnimLeave ) {
+    textAnimate (parentEl, nameAnimEnter, nameAnimLeave, h ) {
         //parentEl = elemento que recibe la animacion
         //nameAnimEnter = nombre de la animacion para show
         //nameAnimLeave = nombre de la animacion para hidde
@@ -112,13 +115,13 @@ AFRAME.registerComponent('inicio', {
         nameAnimEnter = document.createElement('a-animation')
         nameAnimEnter.setAttribute('attribute', 'height')
         nameAnimEnter.setAttribute('from', 0 )
-        nameAnimEnter.setAttribute('to', 1.1 )
+        nameAnimEnter.setAttribute('to', h )
         nameAnimEnter.setAttribute('begin', 'mostrar')
 
         //animacion ocultar texto
         nameAnimLeave = document.createElement('a-animation')
         nameAnimLeave.setAttribute('attribute', 'height')
-        nameAnimLeave.setAttribute('from', 1.1 )
+        nameAnimLeave.setAttribute('from', h )
         nameAnimLeave.setAttribute('to', 0 )
         nameAnimLeave.setAttribute('begin', 'ocultar')
 
