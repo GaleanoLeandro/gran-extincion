@@ -10,8 +10,12 @@ AFRAME.registerComponent('cenozoico', {
         el.appendChild(this.sky);
 
         //Atributos sky
-        this.sky.setAttribute('color', 'skyblue')
+        this.sky.setAttribute('color', '#5F0909')
 
+        setTimeout(() => {
+            escenaEl.setAttribute('fog', { type: 'exponential', color: 'grey', density: .03 } )
+        }, 3500);
+        
         // Crea elemento escenario ply
         this.createPly('escenario', '#escenario-2', 0, -1, 0);
 
@@ -57,12 +61,8 @@ AFRAME.registerComponent('cenozoico', {
         })
 
         // Beelzebufo --------------------------------------------------Cambiar por modelo 3d
-        this.beelzebufo = document.createElement('a-box')
-        this.beelzebufo.setAttribute('color', '#FFFFFF')
-        this.beelzebufo.setAttribute('class', 'clickeable')
-        this.beelzebufo.setAttribute('position', { x: -5, y: .5, z: 0 })
-
-        el.appendChild(this.beelzebufo)
+        this.createObj('beelzebufo', 'beelzebufo', -5, .4, 0, -120)
+        this.beelzebufo = document.querySelector('.beelzebufo')
 
         //beelzebufo Texto
         this.createImage('texto-beelzebufo', 'texto-beelzebufo', '#texto-beelzebufo', -1.5, 1.6, 0, 3.8, 0)
@@ -77,13 +77,9 @@ AFRAME.registerComponent('cenozoico', {
             this.infobeelzebufo.emit('ocultar')
         })
 
-        // Sarcosuchus --------------------------------------------------Cambiar por modelo 3d
-        this.sarcosuchus = document.createElement('a-box')
-        this.sarcosuchus.setAttribute('color', '#FFFFFF')
-        this.sarcosuchus.setAttribute('class', 'clickeable')
-        this.sarcosuchus.setAttribute('position', { x: 0, y: .5, z: 4 })
-
-        el.appendChild(this.sarcosuchus)
+        // Sarcosuchus
+        this.createObj('sarcosuchus', 'sarcosuchus', 0, .4, 4, -120)
+        this.sarcosuchus = document.querySelector('.sarcosuchus')
 
         //Sarcosuchus Texto
         this.createImage('texto-sarcosuchus', 'texto-sarcosuchus', '#texto-sarcosuchus', 0, 1.6, 1.5, 3.8, 0)
@@ -125,17 +121,17 @@ AFRAME.registerComponent('cenozoico', {
         //2 = helecho animado
         //3 = arbol
         var mapa = [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 111, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 111, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
