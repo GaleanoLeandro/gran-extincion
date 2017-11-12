@@ -57,7 +57,7 @@ AFRAME.registerComponent('meteorito', {
         }
 
         //Crear portal 2
-        this.createImage('portal', 'portal-2', '#portal-img', 3, 2, -7, 2.5, 4)
+        this.createImage('portal', 'portal-2', '#portal-img', -4, 2, -7, 2.5, 4)
         this.portal = document.querySelector('.portal-2')
 
         //dispara evento cuando mira el portal
