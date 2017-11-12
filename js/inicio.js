@@ -46,7 +46,7 @@ AFRAME.registerComponent('inicio', {
         var textoLuis = () => {
             //funcion mostrar texto
             var textInit = 1000
-                textInterval = 1000,
+                textInterval = 7000,
                 timeText = textInit + textInterval;
 
             //Cuadro de textos luis

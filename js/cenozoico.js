@@ -11,10 +11,6 @@ AFRAME.registerComponent('cenozoico', {
 
         //Atributos sky
         this.sky.setAttribute('color', '#5F0909')
-
-        // escenaEl.addEventListener('animationend', (e) => {
-        //     escenaEl.setAttribute('fog', { type: 'exponential', color: 'grey', density: .03 })
-        // })
         
         // Crea elemento escenario ply
         this.createPly('escenario', '#escenario-2', 0, -1, 0);
@@ -155,7 +151,7 @@ AFRAME.registerComponent('cenozoico', {
         }
 
         //Crear portal 2
-        this.createImage('portal', 'portal-2', '#portal-img', -4, 2, -7, 2.5, 4)
+        this.createImage('portal', 'portal-2', '#portal-img', 3, 2, -7, 2.5, 4)
         this.portal = document.querySelector('.portal-2')
 
         //dispara evento cuando mira el portal
