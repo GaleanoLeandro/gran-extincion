@@ -5,7 +5,7 @@ AFRAME.registerComponent('escena', {
         const el = this.el
 
         //Borrar
-        // this.data = 3;
+        this.data = 2;
         //Borrar
 
         this.escena1 = document.createElement('a-entity')
@@ -25,7 +25,7 @@ AFRAME.registerComponent('escena', {
         var data = this.data
 
         if (data == 1){
-            this.el.emit('showNiebla')
+            this.el.emit('hiddeNieblaCenozoico')
 
             setTimeout(() => {
                 //Remover todos los elementos de otros escenarios.
@@ -92,7 +92,7 @@ AFRAME.registerComponent('escena', {
             }, 2000);
 
             setTimeout(() => {
-                this.el.emit('hiddeNiebla')
+                this.el.emit('showNieblaCenozoico')
             }, 4000);
         } else {
             data = 1;

@@ -130,7 +130,7 @@ AFRAME.registerComponent('mesozoico', {
 
                     
                     //info helecho
-                    this.createImage('info-helecho', 'info-helecho', '#helecho-img', posX + .6, 2, posZ + 2, 3.7, 0 )
+                    this.createImage('info-helecho', 'info-helecho', '#helecho-img', posX + .7, 1.2, posZ + 3, 3.8, 0 )
                 } else if (mapa[x][z] == 3){
                     //arboles
                     this.createPly('arbol', '#arbol-ply', posX * 4, .2, posZ * 4)
@@ -143,8 +143,8 @@ AFRAME.registerComponent('mesozoico', {
 
         //config informacion helecho
         this.infoHelecho = document.querySelector('.info-helecho')
-        this.infoHelecho.setAttribute( 'rotation', {x: 0, y: 5, z: 0})
-        this.textAnimate(this.infoHelecho, 'infohelecho-show', 'infohelecho-hidden', 1.6)
+        this.infoHelecho.setAttribute( 'rotation', {x: 0, y: 15, z: 0})
+        this.textAnimate(this.infoHelecho, 'infohelecho-show', 'infohelecho-hidden', 1.7)
 
         //mostrar info helecho
         this.helechoWrap.addEventListener('click', () => {

@@ -10,7 +10,7 @@ Ke 0.467200 0.467200 0.467200
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd featheredRaptor_D.jpg
+map_Kd featheredRaptor_D1.jpg
 
 newmtl featheredRaptorwings_D.jpg.001
 Ns 92.156863
@@ -21,4 +21,4 @@ Ke 0.313600 0.313600 0.313600
 Ni 1.000000
 d 1.000000
 illum 1
-map_Kd featheredRaptorwings_D.jpg
+map_Kd featheredRaptorwings_D1.jpg

@@ -12,9 +12,9 @@ AFRAME.registerComponent('cenozoico', {
         //Atributos sky
         this.sky.setAttribute('color', '#5F0909')
 
-        escenaEl.addEventListener('animationend', (e) => {
-            escenaEl.setAttribute('fog', { type: 'exponential', color: 'grey', density: .03 })
-        })
+        // escenaEl.addEventListener('animationend', (e) => {
+        //     escenaEl.setAttribute('fog', { type: 'exponential', color: 'grey', density: .03 })
+        // })
         
         // Crea elemento escenario ply
         this.createPly('escenario', '#escenario-2', 0, -1, 0);
