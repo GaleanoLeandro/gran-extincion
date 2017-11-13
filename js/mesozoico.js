@@ -164,18 +164,6 @@ AFRAME.registerComponent('mesozoico', {
         this.texto1.classList.remove('clickeable')
         this.textAnimate(this.texto1, this.showText1, this.showText1, 1.1);
 
-        //Crea texto 2 luis
-        this.createImage('texto-2', 'texto-2', '#texto-2-2', -1, 1, -2.2, 3.9, 0)
-        this.texto2 = document.querySelector('.texto-2')
-        this.texto2.classList.remove('clickeable')
-        this.textAnimate(this.texto2, this.showText2, this.showText2, 1.1);
-
-        //Crea texto 3 luis
-        this.createImage('texto-3', 'texto-3', '#texto-2-3', -1, 1, -2.2, 3.9, 0)
-        this.texto3 = document.querySelector('.texto-3')
-        this.texto3.classList.remove('clickeable')
-        this.textAnimate(this.texto3, this.showText3, this.showText3, 1.1);
-
         //Crear portal 2
         this.createImage('portal', 'portal-1', '#portal-img', -4, 2, -7, 2.5, 0)
         this.portal = document.querySelector('.portal-1')
@@ -205,19 +193,11 @@ AFRAME.registerComponent('mesozoico', {
             }, textInit);
             setTimeout(() => {
                 this.texto1.emit('ocultar')
-                this.texto2.emit('mostrar')
-            }, timeText);
-            setTimeout(() => {
-                this.texto2.emit('ocultar')
-                this.texto3.emit('mostrar')
-            }, timeText + textInterval);
-            setTimeout(() => {
                 this.textBox.emit('ocultar')
-                this.texto3.emit('ocultar')
                 this.luis.emit('ocultar')
                 this.portal.emit('mostrar')
                 el.appendChild(this.helechoWrap)
-            }, timeText + textInterval * 2);
+            }, timeText);
         }
 
         setTimeout(() => {

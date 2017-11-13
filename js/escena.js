@@ -21,13 +21,15 @@ AFRAME.registerComponent('escena', {
 
 
         var reiniciar = () => {
-            var camara = document.querySelector('.cam-js');
+            var camara = document.querySelector('.cam-js'),
+                cursor = document.querySelector('[cursor]')
             camara.addEventListener('componentchanged', (e) =>{
                 if (e.detail.name !== 'rotation') { return; }
 
                 var camRotateX = camara.getAttribute('rotation').x;
 
                 if ( camRotateX < -70 && (this.data && this.data !== 1) ){
+                    cursor.emit('reinicio')
                     setTimeout(() => {
                         console.log('reinicio');
                         return this.el.setAttribute('escena', 1);

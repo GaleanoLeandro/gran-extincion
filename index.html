@@ -56,16 +56,12 @@
                 <img id="texto-3" src="assets/img/texto-3.png">
                 <!-- Etapa 2 Mesozoico -->
                 <img id="texto-2-1" src="assets/img/texto-2-1.png">
-                <img id="texto-2-2" src="assets/img/texto-2-2.png">
-                <img id="texto-2-3" src="assets/img/texto-2-3.png">
                 <img id="texto-triceratop" src="assets/img/triceratop-texto.png">
                 <img id="texto-oviraptor" src="assets/img/oviraptor-texto.png">
                 <img id="texto-huevos" src="assets/img/huevos-texto.png">
                 <img id="texto-t-rex" src="assets/img/texto-t-rex.png">
                 <!-- Etapa 3 Meteorito -->
                 <img id="texto-3-1" src="assets/img/texto-3-1.png">
-                <img id="texto-3-2" src="assets/img/texto-3-2.png">
-                <img id="texto-3-3" src="assets/img/texto-3-3.png">
                 <img id="texto-rio" src="assets/img/texto-rio.png">
                 <img id="texto-crater" src="assets/img/texto-crater.png">
                 <img id="texto-meteorito" src="assets/img/texto-meteorito.png">
@@ -73,8 +69,6 @@
                 <img id="texto-otroscrateres" src="assets/img/texto-otroscrateres.png">
                 <!-- Etapa 4 Cenozoico -->
                 <img id="texto-4-1" src="assets/img/texto-4-1.png">
-                <img id="texto-4-2" src="assets/img/texto-4-2.png">
-                <img id="texto-4-3" src="assets/img/texto-4-3.png">
                 <img id="texto-hadrosaurus" src="assets/img/texto-hadrosaurus.png">
                 <img id="texto-beelzebufo" src="assets/img/texto-beelzebufo.png">
                 <img id="texto-sarcosuchus" src="assets/img/texto-sarcosuchus.png">
@@ -84,7 +78,7 @@
         </a-assets>
 
 
-        <a-entity class="cam-js" camera look-controls position="0 1.6 0">
+        <a-entity class="cam-js" camera universal-controls="movementControls: hmd-controls;" position="0 1.6 0">
             <a-animation begin="resetCam" attribute="rotation" dur="1000" from="" to="0 0 0"></a-animation>
                 <a-entity cursor="fuse: true; fuseTimeout: 1000"
                     raycaster="objects: .clickeable"
