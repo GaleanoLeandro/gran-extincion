@@ -77,18 +77,18 @@ AFRAME.registerComponent('mesozoico', {
             //3 = arbol
         var mapa = [
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 1, 0, 3, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,111,0, 0, 0, 0, 0, 1, 0, 0, 0 ],
-            [ 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
-            [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
-            [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ],
-            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 3, 0 ],
-            [ 0, 0, 0, 3, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
+            [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ],
+            [ 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 3, 0 ],
+            [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
             [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
         ]
 
@@ -101,7 +101,7 @@ AFRAME.registerComponent('mesozoico', {
                     continue
                 } else if (mapa[x][z] == 1){
                     //helechos
-                    this.createPly('helecho', '#helecho-ply', posX + Math.random(-2, 2), .2, posZ + Math.random(-2, 2))
+                    this.createPly('helecho', '#helecho-ply', posX * 2, .2, posZ * 2)
                 } else if (mapa[x][z] == 2){
                     // config animacion
                     animate.setAttribute('attribute', 'position')
@@ -123,10 +123,8 @@ AFRAME.registerComponent('mesozoico', {
                     this.helechoWrap.appendChild(this.helechoAnim)
 
                     this.helechoAnim.setAttribute('ply-model', { src: '#helecho-ply' })
-                    this.helechoAnim.setAttribute('class', 'clickeable')
-                    this.helechoAnim.setAttribute('position', { x: 0, y: -.5, z: 0 }) 
-                    
-                    el.appendChild(this.helechoWrap)
+                    this.helechoAnim.setAttribute('position', { x: 0, y: -.5, z: 0 })   
+                    // el.appendChild(this.helechoWrap)
 
                     
                     //info helecho
@@ -154,9 +152,77 @@ AFRAME.registerComponent('mesozoico', {
             this.infoHelecho.emit('ocultar')
         })
 
+        //Crea luis
+        this.createImage('luis', 'luis', '#luis-img', 2.1, 1.3, -2.3, 2.4, 0)
+        this.luis = document.querySelector('.luis')
+        this.luis.classList.remove('clickeable')
+        this.textAnimate(this.luis, this.showLuis, this.hiddeLuis, 3.2);
+
+        //Crea texto 1 luis
+        this.createImage('texto-1', 'texto-1', '#texto-2-1', -1, 1, -2.2, 3.9, 0)
+        this.texto1 = document.querySelector('.texto-1')
+        this.texto1.classList.remove('clickeable')
+        this.textAnimate(this.texto1, this.showText1, this.showText1, 1.1);
+
+        //Crea texto 2 luis
+        this.createImage('texto-2', 'texto-2', '#texto-2-2', -1, 1, -2.2, 3.9, 0)
+        this.texto2 = document.querySelector('.texto-2')
+        this.texto2.classList.remove('clickeable')
+        this.textAnimate(this.texto2, this.showText2, this.showText2, 1.1);
+
+        //Crea texto 3 luis
+        this.createImage('texto-3', 'texto-3', '#texto-2-3', -1, 1, -2.2, 3.9, 0)
+        this.texto3 = document.querySelector('.texto-3')
+        this.texto3.classList.remove('clickeable')
+        this.textAnimate(this.texto3, this.showText3, this.showText3, 1.1);
+
         //Crear portal 2
-        this.createImage('portal', 'portal-2', '#portal-img', 3, 2, -7, 2.5, 4 )
-        this.portal = document.querySelector('.portal-2')
+        this.createImage('portal', 'portal-1', '#portal-img', -4, 2, -7, 2.5, 0)
+        this.portal = document.querySelector('.portal-1')
+        this.portal.setAttribute('class', 'clickeable')
+        this.textAnimate(this.portal, 'showPortal', 'hiddePortal', 4)
+
+        var textoLuis = () => {
+            //funcion mostrar texto
+            var textInit = 1000
+            textInterval = 3000,
+                timeText = textInit + textInterval;
+
+            //Cuadro de textos luis
+            this.textBox = document.createElement('a-plane')
+            this.textBox.setAttribute('position', { x: -1, y: 1, z: -2.3 })
+            this.textBox.setAttribute('color', '#181818')
+            this.textBox.setAttribute('width', 3.9)
+            this.textBox.setAttribute('height', 0)
+            this.textAnimate(this.textBox, this.showBox, this.showBox, 1.1);
+
+            el.appendChild(this.textBox);
+
+            setTimeout(() => {
+                this.textBox.emit('mostrar')
+                this.texto1.emit('mostrar')
+                this.luis.emit('mostrar')
+            }, textInit);
+            setTimeout(() => {
+                this.texto1.emit('ocultar')
+                this.texto2.emit('mostrar')
+            }, timeText);
+            setTimeout(() => {
+                this.texto2.emit('ocultar')
+                this.texto3.emit('mostrar')
+            }, timeText + textInterval);
+            setTimeout(() => {
+                this.textBox.emit('ocultar')
+                this.texto3.emit('ocultar')
+                this.luis.emit('ocultar')
+                this.portal.emit('mostrar')
+                el.appendChild(this.helechoWrap)
+            }, timeText + textInterval * 2);
+        }
+
+        setTimeout(() => {
+            textoLuis();
+        }, 3000);
 
         //dispara evento cuando mira el portal
          this.portal.addEventListener('click' , () => {

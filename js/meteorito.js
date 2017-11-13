@@ -13,7 +13,7 @@ AFRAME.registerComponent('meteorito', {
         this.sky.setAttribute('color', 'skyblue')
 
         // Crea elemento escenario ply
-        this.createPly('escenario', '#escenario-ply', 0, 0, 0);
+        this.createPly('escenario', '#escenario-2', 0, 0, 0);
 
         //Mapa
         //0 = nada
@@ -56,29 +56,22 @@ AFRAME.registerComponent('meteorito', {
             }
         }
 
-        //Crear portal 2
-        this.createImage('portal', 'portal-2', '#portal-img', -4, 2, -7, 2.5, 4)
-        this.portal = document.querySelector('.portal-2')
-
-        //dispara evento cuando mira el portal
-        this.portal.addEventListener('click', () => {
-            escenaEl.components['escena'].estado(nextState);
-        })
-
-        // rio --------------------------------------------------Cambiar por modelo 3d
-        this.rio = document.createElement('a-box')
-        this.rio.setAttribute('color', 'blue')
+        // rio 
+        // <a-entity position="-36.03 -0.565 29.013" rotation="-90 0 0" ocean="amplitudeVariance:0.5;density:30;color:#22b4f2;depth:110;width:90"></a-entity>
+        this.rio = document.createElement('a-entity')
         this.rio.setAttribute('class', 'clickeable')
-        this.rio.setAttribute('position', { x: 0, y: 1, z: -2.3 })
+        this.rio.setAttribute('position', { x: -43.8, y: -.5, z: 43.3 })
+        this.rio.setAttribute('rotation', { x: -90, y: 0, z: 0 })
+        this.rio.setAttribute('ocean', { amplitudeVariancex: 0.8, density: 30, color: '#22b4f2', depth: 85, width: 80 })
 
         el.appendChild(this.rio)
 
         // rio texto----------
         var textH = 1.7;
 
-        this.createImage('texto-rio', 'texto-rio', '#texto-rio', 0, 1.5, -1.5, 3.8, 0)
+        this.createImage('texto-rio', 'texto-rio', '#texto-rio', -1.1, 1.5, 0.8, 3.8, 0)
         this.infoRio = document.querySelector('.texto-rio')
-        this.infoRio.setAttribute('rotation', { x: 0, y: 0, z: 0 })
+        this.infoRio.setAttribute('rotation', { x: 0, y: 135, z: 0 })
         this.textAnimate(this.infoRio, 'showInforio', 'hiddenInforio', textH)
 
         this.rio.addEventListener('click', () => {
@@ -153,14 +146,14 @@ AFRAME.registerComponent('meteorito', {
         this.otroscrateres = document.createElement('a-box')
         this.otroscrateres.setAttribute('color', 'blue')
         this.otroscrateres.setAttribute('class', 'clickeable')
-        this.otroscrateres.setAttribute('position', { x: -2.5, y: 1, z: 2 })
+        this.otroscrateres.setAttribute('position', { x: 0, y: 1, z: -2 })
 
         el.appendChild(this.otroscrateres)
 
         // otros crateres----------
-        this.createImage('texto-otroscrateres', 'texto-otroscrateres', '#texto-otroscrateres', -2, 2.5, 1.7, 3.8, 0)
+        this.createImage('texto-otroscrateres', 'texto-otroscrateres', '#texto-otroscrateres', 0, 2.5, -1.7, 3.8, 0)
         this.infootroscrateres = document.querySelector('.texto-otroscrateres')
-        this.infootroscrateres.setAttribute('rotation', { x: 0, y: -230, z: 0 })
+        // this.infootroscrateres.setAttribute('rotation', { x: 0, y: 0, z: 0 })
         this.textAnimate(this.infootroscrateres, 'showInfootroscrateres', 'hiddenInfootroscrateres', textH)
 
         this.otroscrateres.addEventListener('click', () => {
@@ -168,6 +161,82 @@ AFRAME.registerComponent('meteorito', {
         })
         this.infootroscrateres.addEventListener('mouseleave', () => {
             this.infootroscrateres.emit('ocultar')
+        })
+
+        //Crea luis
+        this.createImage('luis', 'luis', '#luis-img', 2.1, 1.3, -2.3, 2.4, 0)
+        this.luis = document.querySelector('.luis')
+        this.luis.classList.remove('clickeable')
+        this.textAnimate(this.luis, this.showLuis, this.hiddeLuis, 3.2);
+
+        //Crea texto 1 luis
+        this.createImage('texto-1', 'texto-1', '#texto-3-1', -1, 1, -2.2, 3.9, 0)
+        this.texto1 = document.querySelector('.texto-1')
+        this.texto1.classList.remove('clickeable')
+        this.textAnimate(this.texto1, this.showText1, this.showText1, 1.1);
+
+        //Crea texto 2 luis
+        this.createImage('texto-2', 'texto-2', '#texto-3-2', -1, 1, -2.2, 3.9, 0)
+        this.texto2 = document.querySelector('.texto-2')
+        this.texto2.classList.remove('clickeable')
+        this.textAnimate(this.texto2, this.showText2, this.showText2, 1.1);
+
+        //Crea texto 3 luis
+        this.createImage('texto-3', 'texto-3', '#texto-3-3', -1, 1, -2.2, 3.9, 0)
+        this.texto3 = document.querySelector('.texto-3')
+        this.texto3.classList.remove('clickeable')
+        this.textAnimate(this.texto3, this.showText3, this.showText3, 1.1);
+
+        //Crear portal 3
+        this.createImage('portal', 'portal-1', '#portal-img', -4, 2, -7, 2.5, 0)
+        this.portal = document.querySelector('.portal-1')
+        this.portal.setAttribute('class', 'clickeable')
+        this.textAnimate(this.portal, 'showPortal', 'hiddePortal', 4)
+
+        var textoLuis = () => {
+            //funcion mostrar texto
+            var textInit = 1000
+            textInterval = 3000,
+                timeText = textInit + textInterval;
+
+            //Cuadro de textos luis
+            this.textBox = document.createElement('a-plane')
+            this.textBox.setAttribute('position', { x: -1, y: 1, z: -2.3 })
+            this.textBox.setAttribute('color', '#181818')
+            this.textBox.setAttribute('width', 3.9)
+            this.textBox.setAttribute('height', 0)
+            this.textAnimate(this.textBox, this.showBox, this.showBox, 1.1);
+
+            el.appendChild(this.textBox);
+
+            setTimeout(() => {
+                this.textBox.emit('mostrar')
+                this.texto1.emit('mostrar')
+                this.luis.emit('mostrar')
+            }, textInit);
+            setTimeout(() => {
+                this.texto1.emit('ocultar')
+                this.texto2.emit('mostrar')
+            }, timeText);
+            setTimeout(() => {
+                this.texto2.emit('ocultar')
+                this.texto3.emit('mostrar')
+            }, timeText + textInterval);
+            setTimeout(() => {
+                this.textBox.emit('ocultar')
+                this.texto3.emit('ocultar')
+                this.luis.emit('ocultar')
+                this.portal.emit('mostrar')
+            }, timeText + textInterval * 2);
+        }
+
+        setTimeout(() => {
+            textoLuis();
+        }, 3000);
+
+        //dispara evento cuando mira el portal
+        this.portal.addEventListener('click', () => {
+            escenaEl.components['escena'].estado(nextState);
         })
     },
     //funcion para importar modelos ply.
