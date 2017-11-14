@@ -173,7 +173,7 @@ AFRAME.registerComponent('mesozoico', {
         var textoLuis = () => {
             //funcion mostrar texto
             var textInit = 1000
-            textInterval = 3000,
+            textInterval = 7000,
                 timeText = textInit + textInterval;
 
             //Cuadro de textos luis

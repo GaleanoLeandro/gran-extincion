@@ -28,13 +28,12 @@ AFRAME.registerComponent('escena', {
 
                 var camRotateX = camara.getAttribute('rotation').x;
 
-                if ( camRotateX < -70 && (this.data && this.data !== 1) ){
-                    cursor.emit('reinicio')
+
+                if (camRotateX < -85 && (this.data && this.data !== 1) ){
                     setTimeout(() => {
-                        console.log('reinicio');
                         return this.el.setAttribute('escena', 1);
                     }, 15000);
-                }
+                } else { return false }
             })
         }
 
@@ -107,6 +106,7 @@ AFRAME.registerComponent('escena', {
 
             setTimeout(() => {
                 this.el.removeChild(this.escena3)
+                // this.el.removeChild(this.escena1)
 
                 this.escena4 = document.createElement('a-entity')
 

@@ -81,18 +81,14 @@ AFRAME.registerComponent('meteorito', {
         })
 
         // crater --------------------------------------------------Cambiar por modelo 3d
-        this.crater = document.createElement('a-box')
-        this.crater.setAttribute('color', 'blue')
+        this.createPly('crater', '#crater-ply', 1.6, 0, 4.8);
+        this.crater = document.querySelector('.crater');
         this.crater.setAttribute('class', 'clickeable')
-        this.crater.setAttribute('position', { x: .5, y: 1, z: 1.8 })
-        this.crater.setAttribute('rotation', { x: 1, y: 250, z: 0 })
-
-        el.appendChild(this.crater)
 
         // crater texto----------
-        this.createImage('texto-crater', 'texto-crater', '#texto-crater', 0.4, 1.8, 1.5, 3.8, 0)
+        this.createImage('texto-crater', 'texto-crater', '#texto-crater', 0.4, 1.8, 1.4, 3.8, 0)
         this.infocrater = document.querySelector('.texto-crater')
-        this.infocrater.setAttribute('rotation', { x: 0, y: 190, z: 0 })
+        this.infocrater.setAttribute('rotation', { x: 0, y: 195, z: 0 })
         this.textAnimate(this.infocrater, 'showInfocrater', 'hiddenInfocrater', textH)
 
         this.crater.addEventListener('click', () => {
@@ -121,17 +117,21 @@ AFRAME.registerComponent('meteorito', {
         })
 
         // iridio --------------------------------------------------Cambiar por modelo 3d
-        this.iridio = document.createElement('a-box')
-        this.iridio.setAttribute('color', 'blue')
-        this.iridio.setAttribute('class', 'clickeable')
-        this.iridio.setAttribute('position', { x: -3, y: 1, z: -0.7 })
+        this.createObj('iridio', 'iridio', 2.1, -100, -2.5, 0);
+        this.iridio = document.querySelector('.iridio');
 
-        el.appendChild(this.iridio)
+        this.showIridio = document.createElement('a-animation');
+        this.showIridio.setAttribute('attribute', 'position');
+        this.showIridio.setAttribute('from', '2.1 -4 -2.5');
+        this.showIridio.setAttribute('to', '2.1 .4 -2.5');
+        this.showIridio.setAttribute('begin', 'showIridio');
+
+        this.iridio.appendChild(this.showIridio)
 
         // iridio texto----------
-        this.createImage('texto-iridio', 'texto-iridio', '#texto-iridio', -2, 1.5, -0.7, 3.8, 0)
+        this.createImage('texto-iridio', 'texto-iridio', '#texto-iridio', .9, 1.5, -1.1, 3.8, 0)
         this.infoiridio = document.querySelector('.texto-iridio')
-        this.infoiridio.setAttribute('rotation', { x: 0, y: -290, z: 0 })
+        this.infoiridio.setAttribute('rotation', { x: 0, y: -40, z: 0 })
         this.textAnimate(this.infoiridio, 'showInfoiridio', 'hiddenInfoiridio', textH)
 
         this.iridio.addEventListener('click', () => {
@@ -141,22 +141,26 @@ AFRAME.registerComponent('meteorito', {
             this.infoiridio.emit('ocultar')
         })
 
-        // otros crateres --------------------------------------------------Cambiar por modelo 3d
-        this.otroscrateres = document.createElement('a-box')
-        this.otroscrateres.setAttribute('color', 'blue')
-        this.otroscrateres.setAttribute('class', 'clickeable')
-        this.otroscrateres.setAttribute('position', { x: 0, y: 1, z: -2 })
-
-        el.appendChild(this.otroscrateres)
+        // otros crateres
+        this.createPly('crateres', '#crateres-ply', -5.8, .2, -1.3);
+        this.createPly('crateres', '#crateres-ply', -7.3, .2, -3.4);
+        this.createPly('crateres', '#crateres-ply', -8.9, .2, -1.4);
+        this.otroscrateres = [...document.querySelectorAll('.crateres')];
+        this.otroscrateres.map( crater => {
+            crater.setAttribute('class', 'clickeable');
+        })
+        
 
         // otros crateres----------
-        this.createImage('texto-otroscrateres', 'texto-otroscrateres', '#texto-otroscrateres', 0, 2.5, -1.7, 3.8, 0)
+        this.createImage('texto-otroscrateres', 'texto-otroscrateres', '#texto-otroscrateres', -1.2, 1.5, -.3, 3.8, 0)
         this.infootroscrateres = document.querySelector('.texto-otroscrateres')
-        // this.infootroscrateres.setAttribute('rotation', { x: 0, y: 0, z: 0 })
+        this.infootroscrateres.setAttribute('rotation', { x: 0, y: 70, z: 0 })
         this.textAnimate(this.infootroscrateres, 'showInfootroscrateres', 'hiddenInfootroscrateres', textH)
 
-        this.otroscrateres.addEventListener('click', () => {
-            this.infootroscrateres.emit('mostrar')
+        this.otroscrateres.map(crater => {
+            crater.addEventListener('click', () => {
+                this.infootroscrateres.emit('mostrar')
+            })
         })
         this.infootroscrateres.addEventListener('mouseleave', () => {
             this.infootroscrateres.emit('ocultar')
@@ -183,7 +187,7 @@ AFRAME.registerComponent('meteorito', {
         var textoLuis = () => {
             //funcion mostrar texto
             var textInit = 1000
-            textInterval = 3000,
+            textInterval = 7000,
                 timeText = textInit + textInterval;
 
             //Cuadro de textos luis
@@ -206,6 +210,7 @@ AFRAME.registerComponent('meteorito', {
                 this.textBox.emit('ocultar')
                 this.luis.emit('ocultar')
                 this.portal.emit('mostrar')
+                this.iridio.emit('showIridio')
             }, timeText);
         }
 
@@ -238,6 +243,7 @@ AFRAME.registerComponent('meteorito', {
 
         nameEl.setAttribute('src', `#${id}-obj`)
         nameEl.setAttribute('mtl', `#${id}-mtl`)
+        nameEl.setAttribute('class', `${id} clickeable`)
         nameEl.setAttribute('position', pos)
         nameEl.setAttribute('rotation', { x: 0, y: yRotate, z: 0 })
     },

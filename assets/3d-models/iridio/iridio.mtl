@@ -1,0 +1,13 @@
+# Blender MTL File: 'iridio.blend'
+# Material Count: 1
+
+newmtl wire_224198087
+Ns 31.372549
+Ka 0.665367 0.665367 0.665367
+Kd 0.836921 0.876108 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd stone-TM.jpg

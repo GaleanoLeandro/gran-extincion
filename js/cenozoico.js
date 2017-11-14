@@ -13,7 +13,7 @@ AFRAME.registerComponent('cenozoico', {
         this.sky.setAttribute('color', '#5F0909')
         
         // Crea elemento escenario ply
-        this.createPly('escenario', '#escenario-2', 0, -1, 0);
+        this.createPly('escenario', '#escenario-3', 0, -1, 0);
 
         //Altura Tarjetas
         var textH = 1.7;
@@ -35,13 +35,9 @@ AFRAME.registerComponent('cenozoico', {
             this.infoRex.emit('ocultar')
         })
 
-        // Hadrosaurus --------------------------------------------------Cambiar por modelo 3d
-        this.hadrosaurus = document.createElement('a-box')
-        this.hadrosaurus.setAttribute('color', '#FFFFFF')
-        this.hadrosaurus.setAttribute('class', 'clickeable')
-        this.hadrosaurus.setAttribute('position', { x: 5, y: .5, z: 0 })
-
-        el.appendChild(this.hadrosaurus)
+        // Hadrosaurus
+        this.createObj('hadrosaurus', 'hadrosaurus', 5, .5, 0, 45)
+        this.hadrosaurus = document.querySelector('.hadrosaurus')
 
         //hadrosaurus Texto
         this.createImage('texto-hadrosaurus', 'texto-hadrosaurus', '#texto-hadrosaurus', 1.5, 1.6, 0, 3.8, 0)
@@ -57,7 +53,7 @@ AFRAME.registerComponent('cenozoico', {
         })
 
         // Beelzebufo --------------------------------------------------Cambiar por modelo 3d
-        this.createObj('beelzebufo', 'beelzebufo', -5, .4, 0, -120)
+        this.createObj('beelzebufo', 'beelzebufo', -5, .4, 0, -25)
         this.beelzebufo = document.querySelector('.beelzebufo')
 
         //beelzebufo Texto
@@ -74,7 +70,7 @@ AFRAME.registerComponent('cenozoico', {
         })
 
         // Sarcosuchus
-        this.createObj('sarcosuchus', 'sarcosuchus', 0, .4, 4, -120)
+        this.createObj('sarcosuchus', 'sarcosuchus', 0, .4, 4, 0)
         this.sarcosuchus = document.querySelector('.sarcosuchus')
 
         //Sarcosuchus Texto
@@ -171,7 +167,7 @@ AFRAME.registerComponent('cenozoico', {
         var textoLuis = () => {
             //funcion mostrar texto
             var textInit = 1000
-            textInterval = 3000,
+            textInterval = 7000,
                 timeText = textInit + textInterval;
 
             //Cuadro de textos luis
