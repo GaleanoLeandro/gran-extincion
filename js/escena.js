@@ -20,24 +20,58 @@ AFRAME.registerComponent('escena', {
         })
 
 
-        var reiniciar = () => {
+        var reiniciar = (seconds) => {
             var camara = document.querySelector('.cam-js'),
-                cursor = document.querySelector('[cursor]')
+                cursor = document.querySelector('[cursor]'),
+                trigger = 0,
+                resetSeconds = seconds;
             camara.addEventListener('componentchanged', (e) =>{
                 if (e.detail.name !== 'rotation') { return; }
 
                 var camRotateX = camara.getAttribute('rotation').x;
 
-
-                if (camRotateX < -85 && (this.data && this.data !== 1) ){
-                    setTimeout(() => {
-                        return this.el.setAttribute('escena', 1);
-                    }, 15000);
-                } else { return false }
+                if (camRotateX < -75 && (this.data && this.data !== 1)){
+                    if (trigger === 0){
+                        cursor.emit('reset');
+                        var contDown = setInterval(() => {
+                            seconds --;
+                            console.log(seconds)
+                            if (seconds < 1) {
+                                return this.el.setAttribute('escena', 1);
+                            }
+                            if(seconds < 1 || trigger === 0){
+                                clearInterval(contDown);
+                                cursor.emit('mouseleave');
+                            }
+                        }, 1000);
+                    }
+                    trigger = 1;
+                } else {
+                    trigger = 0;
+                    seconds = resetSeconds;
+                }
             })
         }
 
-        reiniciar();
+        reiniciar(10);
+        this.camara = document.querySelector('.cam-js');
+    },
+    // timer (time, frames) {
+    //     let rotateX = this.camara.getAttribute('rotation').x,
+    //         reset = (rotateX < -80) ? true : false,
+    //         seconds = 5;
+
+    //     function resSeg() {
+    //         seconds--;
+    //         console.log(seconds)
+    //     }
+        
+    //     if (reset){
+    //         let countdownTimer = setInterval(resSeg(), 1000); 
+    //     }
+    // },
+    tick (time) {
+        // this.timer(5000, time);
     },
     estado (estadoNum) {
         return this.el.setAttribute('escena', estadoNum)
