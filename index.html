@@ -8,8 +8,23 @@
     <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.12.3/dist/aframe-extras.min.js"></script>
     <title>Gran extinción</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- loader -->
+
+    <div class="loader">
+        <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+        <h3 class="loader-text">Cargando...</h3>
+    </div>
+    <!-- loader -->
+
     <script src="/js/inicio.js"></script>
     <script src="/js/mesozoico.js"></script>
     <script src="/js/cenozoico.js"></script>
@@ -100,6 +115,14 @@
                 </a-entity>
         </a-entity>
     </a-scene>
+
+    <script>
+        var loader = document.querySelector('.loader');
+
+        window.addEventListener('load', (e) => {
+            document.body.removeChild(loader);
+        })
+    </script>
 </body>
 
 </html>
