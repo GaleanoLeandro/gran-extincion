@@ -43,6 +43,16 @@ AFRAME.registerComponent('inicio', {
         this.texto3 = document.querySelector('.texto-3')
         this.textAnimate(this.texto3, this.showText3, this.showText3, 1.1);
 
+        //Crea texto 4 luis
+        this.createImage('texto-4', 'texto-4', '#texto-4', -1, .85, -2.2, 3.9, 0)
+        this.texto4 = document.querySelector('.texto-4')
+        this.textAnimate(this.texto4, this.showText4, this.showText4, 1.1);
+
+        //Crea texto 4 luis
+        this.createImage('texto-5', 'texto-5', '#texto-5', -1, .85, -2.2, 3.9, 0)
+        this.texto5 = document.querySelector('.texto-5')
+        this.textAnimate(this.texto5, this.showText5, this.showText5, 1.1);
+
         var textoLuis = () => {
             //funcion mostrar texto
             var textInit = 1000
@@ -70,12 +80,20 @@ AFRAME.registerComponent('inicio', {
             setTimeout(() => {
                 this.texto2.emit('ocultar')
                 this.texto3.emit('mostrar')
-                this.portal.emit('mostrar')
             }, timeText + textInterval);
             setTimeout(() => {
-                this.textBox.emit('ocultar')
                 this.texto3.emit('ocultar')
+                this.texto4.emit('mostrar')
             }, timeText + textInterval * 2);
+            setTimeout(() => {
+                this.texto4.emit('ocultar')
+                this.texto5.emit('mostrar')
+                this.portal.emit('mostrar')
+            }, timeText + textInterval * 3);
+            setTimeout(() => {
+                this.textBox.emit('ocultar')
+                this.texto5.emit('ocultar')
+            }, timeText + textInterval * 4);
         }
 
         var animarBoton = (parentName, nameAnim) =>{

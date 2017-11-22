@@ -40,7 +40,7 @@
         <a-animation begin="hiddeNieblaCenozoico" easing="ease-out" attribute="fog.density" from="0.03" to="1" dur="1500"></a-animation>
         <a-animation begin="hiddeNieblaCenozoico" easing="ease-out" attribute="fog.color" from="grey" to="black" dur="1500"></a-animation>
 
-        <a-assets>
+        <a-assets class="assets">
                 <!-- MODELOS 3D -->
                 <a-asset-item id="escenario-ply" src="assets/3d-models/taller1.ply"></a-asset-item>
                 <a-asset-item id="escenario-2" src="assets/3d-models/escenario2.ply"></a-asset-item>
@@ -76,6 +76,8 @@
                 <img id="texto-1" src="assets/img/texto-1.png">
                 <img id="texto-2" src="assets/img/texto-2.png">
                 <img id="texto-3" src="assets/img/texto-3.png">
+                <img id="texto-4" src="assets/img/texto-4.png">
+                <img id="texto-5" src="assets/img/texto-5.png">
                 <!-- Etapa 2 Mesozoico -->
                 <img id="texto-2-1" src="assets/img/texto-2-1.png">
                 <img id="texto-triceratop" src="assets/img/triceratop-texto.png">
@@ -115,11 +117,13 @@
                 </a-entity>
         </a-entity>
     </a-scene>
-
     <script>
-        var loader = document.querySelector('.loader');
+        document.load
+        var loader = document.querySelector('.loader'),
+            assets = document.querySelector('.assets');
+        
 
-        window.addEventListener('load', (e) => {
+        assets.addEventListener('loaded', (e) => {
             document.body.removeChild(loader);
         })
     </script>
