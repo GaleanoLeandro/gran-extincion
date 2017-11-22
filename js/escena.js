@@ -5,7 +5,7 @@ AFRAME.registerComponent('escena', {
         const el = this.el;
 
         //Borrar
-        // this.data = 3;
+        this.data = 5;
         //Borrar
 
         this.escena1 = document.createElement('a-entity');
@@ -55,23 +55,6 @@ AFRAME.registerComponent('escena', {
 
         reiniciar(10);
         this.camara = document.querySelector('.cam-js');
-    },
-    // timer (time, frames) {
-    //     let rotateX = this.camara.getAttribute('rotation').x,
-    //         reset = (rotateX < -80) ? true : false,
-    //         seconds = 5;
-
-    //     function resSeg() {
-    //         seconds--;
-    //         console.log(seconds)
-    //     }
-        
-    //     if (reset){
-    //         let countdownTimer = setInterval(resSeg(), 1000); 
-    //     }
-    // },
-    tick (time) {
-        // this.timer(5000, time);
     },
     estado (estadoNum) {
         return this.el.setAttribute('escena', estadoNum)
@@ -151,6 +134,23 @@ AFRAME.registerComponent('escena', {
 
             setTimeout(() => {
                 this.el.emit('showNieblaCenozoico')
+            }, 4000);
+        } else if (data == 5) {
+            this.el.emit('hiddeNieblaCenozoico')
+
+            setTimeout(() => {
+                // this.el.removeChild(this.escena4)
+                this.el.removeChild(this.escena1)
+
+                this.escena5 = document.createElement('a-entity')
+
+                this.el.appendChild(this.escena5)
+
+                this.escena5.setAttribute('final', '')
+            }, 2000);
+
+            setTimeout(() => {
+                this.el.emit('hiddeNiebla')
             }, 4000);
         } else {
             data = 1;

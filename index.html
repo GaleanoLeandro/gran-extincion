@@ -12,8 +12,14 @@
 </head>
 <body>
 
-    <!-- loader -->
+    <script src="/js/inicio.js"></script>
+    <script src="/js/mesozoico.js"></script>
+    <script src="/js/cenozoico.js"></script>
+    <script src="/js/meteorito.js"></script>
+    <script src="/js/final.js"></script>
+    <script src="/js/escena.js"></script>
 
+    <!-- loader -->
     <div class="loader">
         <div class="sk-folding-cube">
             <div class="sk-cube1 sk-cube"></div>
@@ -25,11 +31,6 @@
     </div>
     <!-- loader -->
 
-    <script src="/js/inicio.js"></script>
-    <script src="/js/mesozoico.js"></script>
-    <script src="/js/cenozoico.js"></script>
-    <script src="/js/meteorito.js"></script>
-    <script src="/js/escena.js"></script>
     <a-scene class="escena" escena fog="type: exponential; color: black; density: 0;">
         <a-animation begin="showNiebla" easing="ease-in" attribute="fog.density" from="0" to="1"  dur="1500" ></a-animation>    
         <a-animation begin="hiddeNiebla" easing="ease-out" attribute="fog.density" from="1" to="0" dur="1500"></a-animation>
@@ -97,7 +98,8 @@
                 <img id="texto-beelzebufo" src="assets/img/texto-beelzebufo.png">
                 <img id="texto-sarcosuchus" src="assets/img/texto-sarcosuchus.png">
                 <img id="texto-hipotesis" src="assets/img/texto-hipotesis.png">
-                
+
+                <img id="texto-final" src="assets/img/texto-final.png">
                 
         </a-assets>
 
