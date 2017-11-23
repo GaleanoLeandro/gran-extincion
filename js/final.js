@@ -27,12 +27,15 @@ AFRAME.registerComponent('final', {
         this.textAnimate(this.textofinal, this.showText, this.showText, 1.1);
 
         // otras hipotesis --------------------------------------------------Cambiar por modelo 3d
-        this.hipotesis = document.createElement('a-box')
-        this.hipotesis.setAttribute('color', 'blue')
-        this.hipotesis.setAttribute('class', 'clickeable')
-        this.hipotesis.setAttribute('position', { x: -4, y: .5, z: -3 })
+        // this.hipotesis = document.createElement('a-box')
+        // this.hipotesis.setAttribute('color', 'blue')
+        // this.hipotesis.setAttribute('class', 'clickeable')
+        // this.hipotesis.setAttribute('position', { x: -4, y: .5, z: -3 })
 
-        el.appendChild(this.hipotesis)
+        // el.appendChild(this.hipotesis)
+        this.createObj('libro', 'libro', -4, 1.2, -3, 0);
+        this.libro = document.querySelector('.libro');
+        this.libro.setAttribute('rotation', { x: 45, y: 45, z: 0 });
 
         //hipotesis Texto
         this.createImage('texto-hipotesis', 'texto-hipotesis', '#texto-hipotesis', -.9, 1.6, -.6, 3.8, 0)
@@ -41,7 +44,7 @@ AFRAME.registerComponent('final', {
         this.infohipotesis.setAttribute('rotation', { x: 0, y: 55, z: 0 })
         this.textAnimate(this.infohipotesis, 'showInfohipotesis', 'hiddenInfohipotesis', 1.7)
 
-        this.hipotesis.addEventListener('click', () => {
+        this.libro.addEventListener('click', () => {
             this.infohipotesis.emit('mostrar')
         })
         this.infohipotesis.addEventListener('mouseleave', () => {
@@ -51,7 +54,7 @@ AFRAME.registerComponent('final', {
         var textoLuis = () => {
             //funcion mostrar texto
             var textInit = 1000
-            textInterval = 6000,
+            textInterval = 7000,
                 timeText = textInit + textInterval;
 
             //Cuadro de textos luis
@@ -77,6 +80,19 @@ AFRAME.registerComponent('final', {
         setTimeout(() => {
             textoLuis();
         }, 1000);
+    },
+    createObj(nameEl, id, x, y, z, yRotate) {
+        var pos = { x: x, y: y, z: z }
+
+        nameEl = document.createElement('a-obj-model')
+
+        this.el.appendChild(nameEl)
+
+        nameEl.setAttribute('src', `#${id}-obj`)
+        nameEl.setAttribute('mtl', `#${id}-mtl`)
+        nameEl.setAttribute('class', `${id} clickeable`)
+        nameEl.setAttribute('position', pos)
+        nameEl.setAttribute('rotation', { x: 0, y: yRotate, z: 0 })
     },
     textAnimate(parentEl, nameAnimEnter, nameAnimLeave, h) {
         //parentEl = elemento que recibe la animacion

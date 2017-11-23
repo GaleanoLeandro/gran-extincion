@@ -5,7 +5,7 @@ AFRAME.registerComponent('escena', {
         const el = this.el;
 
         //Borrar
-        this.data = 5;
+        // this.data = 5;
         //Borrar
 
         this.escena1 = document.createElement('a-entity');
@@ -139,8 +139,8 @@ AFRAME.registerComponent('escena', {
             this.el.emit('hiddeNieblaCenozoico')
 
             setTimeout(() => {
-                // this.el.removeChild(this.escena4)
-                this.el.removeChild(this.escena1)
+                this.el.removeChild(this.escena4)
+                // this.el.removeChild(this.escena1)
 
                 this.escena5 = document.createElement('a-entity')
 
