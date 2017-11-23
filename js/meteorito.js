@@ -99,12 +99,12 @@ AFRAME.registerComponent('meteorito', {
         })
 
         //meteorito
-        this.createPly('meteorito', '#meteorito-ply', 3, 4.4, 0.2)
+        this.createPly('meteorito', '#meteorito-ply', 3, 3.7, 0.2)
         this.meteorito = document.querySelector('.meteorito')
         this.meteorito.setAttribute('class', 'clickeable')
 
         // meteorito texto----------
-        this.createImage('texto-meteorito', 'texto-meteorito', '#texto-meteorito', 1.1, 2.8, 0.2, 3.8, 0)
+        this.createImage('texto-meteorito', 'texto-meteorito', '#texto-meteorito', 1.1, 2.5, 0, 3.8, 0)
         this.infometeorito = document.querySelector('.texto-meteorito')
         this.infometeorito.setAttribute('rotation', { x: 30, y: -90, z: 0 })
         this.textAnimate(this.infometeorito, 'showInfometeorito', 'hiddenInfometeorito', textH)

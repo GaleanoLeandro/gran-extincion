@@ -5,7 +5,7 @@ AFRAME.registerComponent('escena', {
         const el = this.el;
 
         //Borrar
-        this.data = 5;
+        // this.data = 5;
         //Borrar
 
         this.escena1 = document.createElement('a-entity');
@@ -24,24 +24,30 @@ AFRAME.registerComponent('escena', {
             var camara = document.querySelector('.cam-js'),
                 cursor = document.querySelector('[cursor]'),
                 trigger = 0,
-                resetSeconds = seconds;
+                resetSeconds = seconds,
+                resetText = document.querySelector('.reset-text');
+
             camara.addEventListener('componentchanged', (e) =>{
                 if (e.detail.name !== 'rotation') { return; }
 
                 var camRotateX = camara.getAttribute('rotation').x;
 
                 if (camRotateX < -75 && (this.data && this.data !== 1)){
+
                     if (trigger === 0){
                         cursor.emit('reset');
                         var contDown = setInterval(() => {
                             seconds --;
                             console.log(seconds)
+                            resetText.setAttribute('value', `Reiniciando en ${seconds}`);
                             if (seconds < 1) {
+                                clearInterval(contDown);
                                 return this.el.setAttribute('escena', 1);
                             }
                             if(seconds < 1 || trigger === 0){
                                 clearInterval(contDown);
                                 cursor.emit('mouseleave');
+                                resetText.setAttribute('value', '');
                             }
                         }, 1000);
                     }
@@ -70,6 +76,7 @@ AFRAME.registerComponent('escena', {
                 if (document.querySelector('[mesozoico]')) { this.el.removeChild(this.escena2) }
                 if (document.querySelector('[meteorito]')) { this.el.removeChild(this.escena3) }
                 if (document.querySelector('[cenozoico]')) { this.el.removeChild(this.escena4) }
+                if (document.querySelector('[final]')) { this.el.removeChild(this.escena5) }
 
                 //Crear componente del escenario actual
                 this.escena1 = document.createElement('a-entity')
@@ -106,7 +113,6 @@ AFRAME.registerComponent('escena', {
 
             setTimeout(() => {
                 this.el.removeChild(this.escena2)
-                // this.el.removeChild(this.escena1)
 
                 this.escena3 = document.createElement('a-entity')
 
@@ -123,7 +129,6 @@ AFRAME.registerComponent('escena', {
 
             setTimeout(() => {
                 this.el.removeChild(this.escena3)
-                // this.el.removeChild(this.escena1)
 
                 this.escena4 = document.createElement('a-entity')
 
@@ -139,8 +144,7 @@ AFRAME.registerComponent('escena', {
             this.el.emit('hiddeNieblaCenozoico')
 
             setTimeout(() => {
-                // this.el.removeChild(this.escena4)
-                this.el.removeChild(this.escena1)
+                this.el.removeChild(this.escena4)
 
                 this.escena5 = document.createElement('a-entity')
 
