@@ -38,10 +38,11 @@ AFRAME.registerComponent('escena', {
                         cursor.emit('reset');
                         var contDown = setInterval(() => {
                             seconds --;
-                            console.log(seconds)
+                            // console.log(seconds)
                             resetText.setAttribute('value', `Reiniciando en ${seconds}`);
                             if (seconds < 1) {
                                 clearInterval(contDown);
+                                resetText.setAttribute('value', '');
                                 return this.el.setAttribute('escena', 1);
                             }
                             if(seconds < 1 || trigger === 0){
